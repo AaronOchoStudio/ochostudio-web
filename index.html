@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ochostudio — Resultados medibles para tu negocio</title>
+<meta name="description" content="Agencia de marketing digital para PyMEs y profesionales independientes en CABA y GBA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080808;--bg2:#111111;--bg3:#161616;--bg4:#1c1c1c;
+  --w:#ffffff;--w2:#dddddd;--w3:#bbbbbb;--w4:#999999;
+  --b:#5BB8F5;--b2:#3da8f0;
+  --br:rgba(255,255,255,0.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--w);overflow-x:hidden;cursor:none}
+
+/* CURSOR */
+.cur{position:fixed;width:8px;height:8px;background:var(--b);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s}
+.cur-r{position:fixed;width:36px;height:36px;border:1px solid rgba(91,184,245,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 52px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--br)}
+.logo{display:flex;align-items:center;gap:1px;text-decoration:none}
+.lo{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;color:var(--w)}
+.ls{display:inline-flex;align-items:center;justify-content:center;width:21px;height:21px;background:var(--b);border-radius:5px;color:#000;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;margin:0 1px}
+.lt{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;color:#666}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:13px;color:var(--w3);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--w)}
+.nav-btn{font-size:13px;font-weight:500;padding:9px 20px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.2);color:var(--w);text-decoration:none;transition:all .2s}
+.nav-btn:hover{background:var(--b);border-color:var(--b);color:#000}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 52px 80px;position:relative;overflow:hidden;text-align:center}
+.h-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%)}
+.h-orb{position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(91,184,245,0.08) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-55%);pointer-events:none}
+.h-pill{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--b);background:rgba(91,184,245,0.1);border:1px solid rgba(91,184,245,0.25);padding:7px 18px;border-radius:40px;margin-bottom:40px}
+.pdot{width:5px;height:5px;border-radius:50%;background:var(--b);animation:blink 2s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.h-t{font-family:'Syne',sans-serif;font-size:clamp(48px,7vw,88px);font-weight:800;line-height:.95;letter-spacing:-3px;margin-bottom:28px}
+.tw{color:var(--w);display:block}
+.td{color:#555;display:block}
+.tb{color:var(--b);display:block}
+.h-d{font-size:17px;font-weight:300;color:var(--w3);line-height:1.75;max-width:500px;margin-bottom:44px}
+.h-ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:72px}
+.cm{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:500;background:var(--b);color:#000;padding:15px 28px;border-radius:10px;text-decoration:none;transition:all .2s}
+.cm:hover{background:var(--b2);transform:translateY(-2px)}
+.cg{display:inline-flex;align-items:center;gap:10px;font-size:15px;color:var(--w3);padding:15px 28px;border-radius:10px;text-decoration:none;border:1px solid var(--br);transition:all .2s}
+.cg:hover{border-color:rgba(255,255,255,0.3);color:var(--w);transform:translateY(-2px)}
+.h-m{display:flex;border:1px solid var(--br);border-radius:16px;overflow:hidden}
+.met{padding:22px 36px;text-align:center;border-right:1px solid var(--br);background:var(--bg2)}
+.met:last-child{border-right:none}
+.mn{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--w);line-height:1;margin-bottom:4px}
+.mn em{color:var(--b);font-style:normal}
+.ml{font-size:11px;color:var(--w4);letter-spacing:.5px}
+
+/* STATS */
+.stats{padding:48px 52px;background:var(--bg2);border-top:1px solid var(--br);border-bottom:1px solid var(--br)}
+.stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;border:1px solid var(--br);border-radius:16px;overflow:hidden}
+.stat-card{padding:32px;text-align:center;background:var(--bg3);border-right:1px solid var(--br)}
+.stat-card:last-child{border-right:none}
+.stat-n{font-family:'Syne',sans-serif;font-size:38px;font-weight:800;color:var(--b);line-height:1;margin-bottom:6px}
+.stat-t{font-size:13px;font-weight:500;color:var(--w);margin-bottom:3px}
+.stat-d{font-size:11px;color:var(--w4)}
+
+/* MARQUEE */
+.mq{padding:16px 0;overflow:hidden;background:var(--bg2);border-bottom:1px solid var(--br)}
+.mq-t{display:flex;width:max-content;animation:mq 30s linear infinite}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mq-i{display:flex;align-items:center;gap:14px;padding:0 36px;white-space:nowrap;font-family:'Syne',sans-serif;font-size:12px;font-weight:500;color:var(--w4);letter-spacing:1.5px;text-transform:uppercase}
+.md{width:4px;height:4px;border-radius:50%;background:var(--b);flex-shrink:0}
+
+/* SECTIONS */
+.sec{padding:80px 52px}
+.lbl{font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--b);margin-bottom:16px;display:block}
+.sh{font-family:'Syne',sans-serif;font-size:clamp(30px,4vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1.05;color:var(--w);max-width:640px;margin-bottom:12px}
+.sd{font-size:15px;font-weight:300;color:var(--w3);max-width:480px;line-height:1.7;margin-bottom:56px}
+
+/* NOSOTROS */
+.nos-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid var(--br);border-radius:20px;overflow:hidden;margin-bottom:0}
+.nos-card{background:var(--bg2);padding:40px}
+.nos-card:first-child{border-right:1px solid var(--br)}
+.nos-label{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;color:var(--b);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;display:block}
+.nos-text{font-size:15px;font-weight:300;color:var(--w2);line-height:1.8}
+.team-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}
+.team-item:last-child{margin-bottom:0}
+.team-icon{width:36px;height:36px;border-radius:8px;background:rgba(91,184,245,0.1);border:1px solid rgba(91,184,245,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.team-name{font-size:14px;font-weight:500;color:var(--w);margin-bottom:2px}
+.team-desc{font-size:13px;color:var(--w4)}
+.team-name-blue{font-size:14px;font-weight:500;color:var(--b);margin-bottom:2px}
+
+/* SERVICIOS */
+.sv-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid var(--br);border-radius:20px;overflow:hidden;margin-bottom:20px}
+.sv{background:var(--bg2);padding:40px;position:relative;overflow:hidden;transition:background .3s;border-right:1px solid var(--br);border-bottom:1px solid var(--br)}
+.sv:nth-child(2n){border-right:none}
+.sv:nth-child(3),.sv:nth-child(4){border-bottom:none}
+.sv:hover{background:var(--bg3)}
+.sv-glow{position:absolute;width:180px;height:180px;background:radial-gradient(circle,rgba(91,184,245,0.08),transparent 70%);top:-50px;right:-50px;opacity:0;transition:opacity .3s}
+.sv:hover .sv-glow{opacity:1}
+.sv-n{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;color:var(--b);letter-spacing:2px;margin-bottom:20px;display:block}
+.sv-ic{width:44px;height:44px;border-radius:10px;background:var(--bg4);border:1px solid var(--br);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.sv-ic svg{width:20px;height:20px}
+.sv-nm{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;color:var(--w);letter-spacing:-.3px;margin-bottom:10px}
+.sv-ds{font-size:14px;font-weight:300;color:var(--w3);line-height:1.7;margin-bottom:24px}
+.sv-tags{display:flex;flex-wrap:wrap;gap:6px}
+.sv-tag{font-size:11px;color:var(--w4);background:var(--bg4);border:1px solid var(--br);padding:4px 10px;border-radius:6px}
+
+/* CAPACIDADES */
+.cap-box{background:var(--bg2);border:1px solid var(--br);border-radius:20px;padding:36px 40px}
+.cap-label{display:flex;align-items:center;gap:10px;margin-bottom:24px}
+.cap-dot{width:6px;height:6px;border-radius:50%;background:var(--b);animation:blink 2s ease infinite}
+.cap-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;color:var(--b);letter-spacing:2px;text-transform:uppercase}
+.cap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.cap-card{text-align:center;padding:20px 12px;background:var(--bg3);border-radius:12px;border:1px solid var(--br)}
+.cap-emoji{font-size:20px;margin-bottom:8px;display:block}
+.cap-name{font-size:13px;font-weight:500;color:var(--w);margin-bottom:4px}
+.cap-desc{font-size:11px;color:var(--w4);line-height:1.5}
+.cap-footer{padding:14px 20px;background:var(--bg);border-radius:10px;border:1px solid rgba(91,184,245,0.12);text-align:center}
+.cap-footer span{font-size:13px;color:var(--w3)}
+.cap-footer em{font-style:normal;color:var(--b);font-weight:500}
+
+/* POR QUÉ */
+.why-box{border:1px solid var(--br);border-radius:24px;overflow:hidden;background:var(--bg2)}
+.why-top{padding:52px 48px;border-bottom:1px solid var(--br);display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end}
+.why-grid{display:grid;grid-template-columns:1fr 1fr}
+.wc{padding:36px 32px;border-right:1px solid var(--br);border-bottom:1px solid var(--br);transition:background .3s}
+.wc:hover{background:var(--bg3)}
+.wc:nth-child(2n){border-right:none}
+.wc:nth-child(3),.wc:nth-child(4){border-bottom:none}
+.wi{width:32px;height:32px;border-radius:8px;background:rgba(91,184,245,0.1);border:1px solid rgba(91,184,245,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.wn{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:rgba(91,184,245,0.1);line-height:1;margin-bottom:12px;transition:color .3s}
+.wc:hover .wn{color:rgba(91,184,245,0.18)}
+.wt{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--w);letter-spacing:-.3px;margin-bottom:8px}
+.wd{font-size:14px;font-weight:300;color:var(--w3);line-height:1.7}
+
+/* PROCESO */
+.pr-list{border:1px solid var(--br);border-radius:20px;overflow:hidden}
+.pr-row{display:grid;grid-template-columns:72px 1fr 1fr;border-bottom:1px solid var(--br);background:var(--bg2);transition:background .3s}
+.pr-row:last-child{border-bottom:none}
+.pr-row:hover{background:var(--bg3)}
+.pr-num{padding:32px 0;display:flex;align-items:flex-start;justify-content:center;padding-top:36px}
+.pr-badge{width:38px;height:38px;border-radius:10px;background:rgba(91,184,245,0.1);border:1px solid rgba(91,184,245,0.25);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--b)}
+.pr-main{padding:32px 24px}
+.pr-t{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--w);margin-bottom:8px}
+.pr-d{font-size:14px;font-weight:300;color:var(--w3);line-height:1.7}
+.pr-side{padding:32px 24px;border-left:1px solid var(--br)}
+.pr-side-label{font-size:10px;font-weight:600;color:var(--b);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;display:block}
+.pr-side-text{font-size:13px;color:var(--w4);line-height:1.65;margin-bottom:12px}
+.pr-chip{display:inline-flex;align-items:center;gap:6px;background:var(--bg4);border:1px solid var(--br);border-radius:6px;padding:5px 12px}
+.pr-chip-dot{width:5px;height:5px;border-radius:50%;background:#22c55e}
+.pr-chip span{font-size:11px;color:var(--w3)}
+.pr-chip-blue .pr-chip-dot{background:var(--b)}
+.pr-chip-blue span{color:var(--b)}
+
+/* CONTACTO */
+.ct-box{background:var(--bg2);border:1px solid var(--br);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr}
+.ct-l{padding:56px 48px;border-right:1px solid var(--br);display:flex;flex-direction:column;justify-content:space-between}
+.ct-r{padding:56px 48px;background:var(--bg3);display:flex;flex-direction:column;gap:14px;justify-content:center}
+.ct-big{font-family:'Syne',sans-serif;font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-1.5px;line-height:1.05;color:var(--w);margin-bottom:16px}
+.ct-sub{font-size:15px;font-weight:300;color:var(--w3);line-height:1.7;max-width:320px}
+.ct-badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--w4);margin-top:40px}
+.bdot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:blink 2s ease infinite}
+.bwa{display:flex;align-items:center;justify-content:center;gap:12px;background:#25D366;color:#fff;font-size:15px;font-weight:500;padding:16px 28px;border-radius:12px;text-decoration:none;transition:all .2s}
+.bwa:hover{background:#1ebe5a;transform:translateY(-2px)}
+.bml{display:flex;align-items:center;justify-content:center;gap:10px;background:transparent;color:var(--w3);font-size:14px;padding:14px 28px;border-radius:12px;text-decoration:none;border:1px solid var(--br);transition:all .2s}
+.bml:hover{border-color:rgba(255,255,255,0.25);color:var(--w)}
+.ct-note{font-size:12px;color:var(--w4);text-align:center}
+
+/* FOOTER */
+footer{padding:28px 52px;border-top:1px solid var(--br);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.fl{display:flex;align-items:center;gap:1px;text-decoration:none}
+.flo{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--w)}
+.fls{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;background:var(--b);border-radius:4px;color:#000;font-family:'Syne',sans-serif;font-size:12px;font-weight:800;margin:0 1px}
+.flt{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#555}
+.flinks{display:flex;gap:24px}
+.flinks a{font-size:13px;color:var(--w4);text-decoration:none;transition:color .2s}
+.flinks a:hover{color:var(--w)}
+.fcp{font-size:12px;color:var(--w4)}
+
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#444;border-radius:2px}
+
+@media(max-width:900px){
+  nav{padding:0 20px}.nav-links{display:none}
+  #hero{padding:100px 20px 60px}
+  .h-m{flex-direction:column}.met{border-right:none;border-bottom:1px solid var(--br)}.met:last-child{border-bottom:none}
+  .sec{padding:56px 20px}
+  .nos-grid,.sv-grid,.why-top,.ct-box{grid-template-columns:1fr}
+  .nos-card:first-child{border-right:none;border-bottom:1px solid var(--br)}
+  .why-grid{grid-template-columns:1fr}.wc{border-right:none}.wc:nth-child(3){border-bottom:1px solid var(--br)}
+  .pr-row{grid-template-columns:56px 1fr}.pr-side{display:none}
+  .ct-l{border-right:none;border-bottom:1px solid var(--br);padding:40px 24px}.ct-r{padding:40px 24px}
+  .cap-grid{grid-template-columns:1fr 1fr}
+  .stats-inner{grid-template-columns:1fr 1fr}
+  footer{padding:24px 20px;flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="c"></div>
+<div class="cur-r" id="cr"></div>
+
+<nav>
+  <a href="#" class="logo"><span class="lo">Ocho</span><span class="ls">S</span><span class="lt">tudio</span></a>
+  <div class="nav-links">
+    <a href="#nosotros">Nosotros</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <a href="https://wa.me/5491122612775" class="nav-btn" target="_blank">Hablemos →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="h-grid"></div>
+  <div class="h-orb"></div>
+  <div class="h-pill"><span class="pdot"></span>Agencia de marketing · CABA y GBA</div>
+  <h1 class="h-t">
+    <span class="tw">Marketing</span>
+    <span class="td">que genera</span>
+    <span class="tb">resultados.</span>
+  </h1>
+  <p class="h-d">Ayudamos a PyMEs y profesionales a conseguir más clientes con estrategias concretas, comunicación directa y resultados medibles desde el primer mes.</p>
+  <div class="h-ctas">
+    <a href="https://wa.me/5491122612775?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20ochostudio" class="cm" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Escribinos por WhatsApp
+    </a>
+    <a href="#servicios" class="cg">Ver servicios ↓</a>
+  </div>
+  <div class="h-m">
+    <div class="met"><div class="mn">7<em>×</em>24</div><div class="ml">Disponibilidad</div></div>
+    <div class="met"><div class="mn"><em>+</em>100%</div><div class="ml">Resultados medibles</div></div>
+    <div class="met"><div class="mn"><em>&lt;</em>24hs</div><div class="ml">Respuesta garantizada</div></div>
+    <div class="met"><div class="mn">0</div><div class="ml">Contrato mínimo</div></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat-card"><div class="stat-n">+50%</div><div class="stat-t">Más consultas</div><div class="stat-d">promedio en 90 días</div></div>
+    <div class="stat-card"><div class="stat-n">3x</div><div class="stat-t">Más alcance orgánico</div><div class="stat-d">con gestión profesional</div></div>
+    <div class="stat-card"><div class="stat-n">-40%</div><div class="stat-t">Costo por lead</div><div class="stat-d">con campañas optimizadas</div></div>
+    <div class="stat-card"><div class="stat-n">24hs</div><div class="stat-t">Propuesta lista</div><div class="stat-d">después del diagnóstico</div></div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="mq"><div class="mq-t">
+  <div class="mq-i"><span class="md"></span>Gestión de redes</div><div class="mq-i"><span class="md"></span>Google Ads</div><div class="mq-i"><span class="md"></span>Meta Ads</div><div class="mq-i"><span class="md"></span>SEO local</div><div class="mq-i"><span class="md"></span>WhatsApp Business</div><div class="mq-i"><span class="md"></span>Identidad visual</div><div class="mq-i"><span class="md"></span>Sitios web</div><div class="mq-i"><span class="md"></span>Papelería</div><div class="mq-i"><span class="md"></span>Fotografía de marca</div><div class="mq-i"><span class="md"></span>CABA y GBA</div>
+  <div class="mq-i"><span class="md"></span>Gestión de redes</div><div class="mq-i"><span class="md"></span>Google Ads</div><div class="mq-i"><span class="md"></span>Meta Ads</div><div class="mq-i"><span class="md"></span>SEO local</div><div class="mq-i"><span class="md"></span>WhatsApp Business</div><div class="mq-i"><span class="md"></span>Identidad visual</div><div class="mq-i"><span class="md"></span>Sitios web</div><div class="mq-i"><span class="md"></span>Papelería</div><div class="mq-i"><span class="md"></span>Fotografía de marca</div><div class="mq-i"><span class="md"></span>CABA y GBA</div>
+</div></div>
+
+<!-- NOSOTROS -->
+<section class="sec" id="nosotros">
+  <div style="max-width:1100px;margin:0 auto">
+    <span class="lbl">Quiénes somos</span>
+    <h2 class="sh">Un equipo creativo completo, potenciado por IA.</h2>
+    <p class="sd">ochostudio nació para resolver un problema concreto: las PyMEs tienen negocios que funcionan pero ningún sistema creativo que los potencie. Sin agencias grandes que cobran caro, sin freelancers que entregan tarde.</p>
+    <div class="nos-grid">
+      <div class="nos-card">
+        <span class="nos-label">Nuestra filosofía</span>
+        <p class="nos-text">Trabajamos con IA como parte del equipo — no para reemplazar la creatividad, sino para multiplicarla. Cada proyecto que hacemos para un cliente refleja lo mismo que le ofrecemos: estrategia, diseño y ejecución a nivel profesional sin los costos de una agencia grande.</p>
+      </div>
+      <div class="nos-card">
+        <span class="nos-label">El equipo</span>
+        <div class="team-item">
+          <div class="team-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5BB8F5" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div><div class="team-name">Estrategia y dirección creativa</div><div class="team-desc">Marketing digital, propuestas y gestión de clientes</div></div>
+        </div>
+        <div class="team-item">
+          <div class="team-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5BB8F5" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><div class="team-name">Comercial y desarrollo de negocio</div><div class="team-desc">Prospección, ventas y relaciones con clientes</div></div>
+        </div>
+        <div class="team-item">
+          <div class="team-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5BB8F5" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+          <div><div class="team-name">Fotografía y producción visual</div><div class="team-desc">Contenido orgánico y fotografía de marca</div></div>
+        </div>
+        <div class="team-item">
+          <div class="team-icon" style="background:rgba(91,184,245,0.15);border-color:rgba(91,184,245,0.35)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5BB8F5" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+          <div><div class="team-name-blue">IA como parte del equipo</div><div class="team-desc">Diseño, código, contenido y estrategia aumentados con IA</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="sec" id="servicios" style="padding-top:0">
+  <div style="max-width:1100px;margin:0 auto">
+    <span class="lbl">Lo que hacemos</span>
+    <h2 class="sh">Todo lo que tu negocio necesita, en un solo lugar.</h2>
+    <p class="sd">Si podés imaginarlo, lo podemos hacer. Sin paquetes genéricos ni estrategias que no se pueden medir.</p>
+    <div class="sv-grid">
+      <div class="sv"><div class="sv-glow"></div><span class="sv-n">01</span><div class="sv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#5BB8F5" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div class="sv-nm">Redes sociales</div><p class="sv-ds">Gestión completa de Instagram y Facebook con foco en generar consultas reales, no solo seguidores. Contenido, diseño y publicación.</p><div class="sv-tags"><span class="sv-tag">Instagram</span><span class="sv-tag">Facebook</span><span class="sv-tag">Diseño incluido</span><span class="sv-tag">8-12 posts/mes</span></div></div>
+      <div class="sv"><div class="sv-glow"></div><span class="sv-n">02</span><div class="sv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#5BB8F5" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div><div class="sv-nm">Publicidad paga</div><p class="sv-ds">Campañas en Google Ads y Meta Ads configuradas y optimizadas semanalmente. Cada peso en pauta generando el mayor retorno posible.</p><div class="sv-tags"><span class="sv-tag">Google Ads</span><span class="sv-tag">Meta Ads</span><span class="sv-tag">Optimización semanal</span></div></div>
+      <div class="sv"><div class="sv-glow"></div><span class="sv-n">03</span><div class="sv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#5BB8F5" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div><div class="sv-nm">SEO y posicionamiento</div><p class="sv-ds">Aparecer en Google cuando buscan lo que ofrecés. Google Business, contenido optimizado y posicionamiento local en CABA y GBA.</p><div class="sv-tags"><span class="sv-tag">Google Business</span><span class="sv-tag">SEO local</span><span class="sv-tag">Blog optimizado</span></div></div>
+      <div class="sv"><div class="sv-glow"></div><span class="sv-n">04</span><div class="sv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#5BB8F5" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="sv-nm">WhatsApp Business</div><p class="sv-ds">Configuración profesional para causar buena impresión desde el primer mensaje y no perder consultas por falta de respuesta rápida.</p><div class="sv-tags"><span class="sv-tag">Perfil profesional</span><span class="sv-tag">Automatizaciones</span><span class="sv-tag">Catálogo</span></div></div>
+    </div>
+    <div class="cap-box">
+      <div class="cap-label"><span class="cap-dot"></span><span class="cap-title">Capacidades creativas — lo que también podemos hacer</span></div>
+      <div class="cap-grid">
+        <div class="cap-card"><span class="cap-emoji">🌐</span><div class="cap-name">Sitios web</div><div class="cap-desc">Landings y webs profesionales listas para publicar</div></div>
+        <div class="cap-card"><span class="cap-emoji">🎨</span><div class="cap-name">Identidad visual</div><div class="cap-desc">Logo, paleta, tipografía y manual de marca</div></div>
+        <div class="cap-card"><span class="cap-emoji">📄</span><div class="cap-name">Papelería y ploteos</div><div class="cap-desc">Tarjetas, uniformes, cartelería y folletería</div></div>
+        <div class="cap-card"><span class="cap-emoji">📸</span><div class="cap-name">Fotografía de marca</div><div class="cap-desc">Contenido orgánico y sesiones para redes</div></div>
+      </div>
+      <div class="cap-footer"><span>¿Tenés algo en mente que no está en la lista? </span><em>Si lo podés imaginar, lo podemos hacer.</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ -->
+<section class="sec" id="porque" style="padding-top:0">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="why-box">
+      <div class="why-top">
+        <div><span class="lbl" style="margin-bottom:14px">Por qué ochostudio</span><h2 class="sh" style="margin-bottom:0;max-width:100%">Sin vueltas.<br>Con resultados.</h2></div>
+        <div><p style="font-size:15px;font-weight:300;color:var(--w3);line-height:1.7">Trabajamos con dueños de negocios que quieren resultados reales — no informes llenos de tecnicismos que nadie entiende.</p></div>
+      </div>
+      <div class="why-grid">
+        <div class="wc"><div class="wi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5BB8F5" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="wn">01</div><div class="wt">Resultados medibles</div><p class="wd">Cada acción tiene un objetivo claro y un número que lo respalda. Si no se puede medir, no lo hacemos.</p></div>
+        <div class="wc"><div class="wi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5BB8F5" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="wn">02</div><div class="wt">Comunicación directa</div><p class="wd">Sin intermediarios ni tecnicismos. Respondemos en menos de 24 horas en el idioma del cliente.</p></div>
+        <div class="wc"><div class="wi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5BB8F5" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="wn">03</div><div class="wt">Disponibilidad 7×24</div><p class="wd">Los negocios no tienen horario fijo y nosotros tampoco. Estamos cuando nos necesitás.</p></div>
+        <div class="wc"><div class="wi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5BB8F5" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><div class="wn">04</div><div class="wt">Sin contrato mínimo</div><p class="wd">Confiamos en los resultados, no en la letra chica. Cancelás con 15 días de aviso, sin justificaciones.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="sec" id="proceso" style="padding-top:0">
+  <div style="max-width:1100px;margin:0 auto">
+    <span class="lbl">Cómo trabajamos</span>
+    <h2 class="sh">Del primer mensaje al primer resultado.</h2>
+    <p class="sd">Un proceso claro, sin sorpresas. Sabés exactamente qué pasa en cada etapa y cuánto tiempo lleva.</p>
+    <div class="pr-list">
+      <div class="pr-row">
+        <div class="pr-num"><div class="pr-badge">01</div></div>
+        <div class="pr-main"><div class="pr-t">Primera consulta</div><p class="pr-d">Nos escribís por WhatsApp. Te respondemos en menos de 2 horas con preguntas clave para entender tu negocio, el problema que querés resolver y qué resultado estás buscando.</p></div>
+        <div class="pr-side"><span class="pr-side-label">Lo que necesitás</span><p class="pr-side-text">Solo contarnos qué está pasando. Sin preparación previa.</p><div class="pr-chip"><span class="pr-chip-dot"></span><span>Menos de 2 horas</span></div></div>
+      </div>
+      <div class="pr-row">
+        <div class="pr-num"><div class="pr-badge">02</div></div>
+        <div class="pr-main"><div class="pr-t">Llamada de diagnóstico</div><p class="pr-d">20 minutos por videollamada o teléfono. Entendemos tu negocio, objetivos, competencia y presupuesto. Sin compromiso. Al final sabés exactamente qué podemos hacer.</p></div>
+        <div class="pr-side"><span class="pr-side-label">Lo que necesitás</span><p class="pr-side-text">20 minutos libres y acceso a tus redes o web actuales.</p><div class="pr-chip"><span class="pr-chip-dot"></span><span>20 minutos · Sin compromiso</span></div></div>
+      </div>
+      <div class="pr-row">
+        <div class="pr-num"><div class="pr-badge">03</div></div>
+        <div class="pr-main"><div class="pr-t">Propuesta personalizada</div><p class="pr-d">En menos de 24 horas te enviamos una propuesta con los servicios que realmente necesitás, entregables concretos y precio. Sin letra chica, sin tecnicismos.</p></div>
+        <div class="pr-side"><span class="pr-side-label">Lo que recibís</span><p class="pr-side-text">Propuesta en PDF con servicios, entregables y precio. Válida 15 días.</p><div class="pr-chip"><span class="pr-chip-dot"></span><span>Menos de 24 horas</span></div></div>
+      </div>
+      <div class="pr-row">
+        <div class="pr-num"><div class="pr-badge">04</div></div>
+        <div class="pr-main"><div class="pr-t">Arranque en 3 días hábiles</div><p class="pr-d">Confirmada la propuesta y el primer pago, arrancamos en 3 días hábiles. Onboarding simple: accesos a tus cuentas y un formulario de 5 minutos. Después, nos encargamos nosotros.</p></div>
+        <div class="pr-side"><span class="pr-side-label">Lo que necesitás</span><p class="pr-side-text">Acceso a tus cuentas y completar un formulario breve.</p><div class="pr-chip pr-chip-blue"><span class="pr-chip-dot"></span><span>3 días · Listo para crecer</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="sec" id="contacto" style="padding-top:0">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="ct-box">
+      <div class="ct-l">
+        <div>
+          <span class="lbl" style="margin-bottom:16px">Empezá hoy</span>
+          <div class="ct-big">¿Listo para que el marketing trabaje para vos?</div>
+          <p class="ct-sub">El primer paso es gratis. Una llamada de 20 minutos para entender tu negocio y ver qué podemos hacer juntos.</p>
+        </div>
+        <div class="ct-badge"><span class="bdot"></span>Respuesta en menos de 2 horas</div>
+      </div>
+      <div class="ct-r">
+        <a href="https://wa.me/5491122612775?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20ochostudio" class="bwa" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Escribinos por WhatsApp
+        </a>
+        <a href="mailto:AaronBlanco@weareochostudio.com" class="bml">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          AaronBlanco@weareochostudio.com
+        </a>
+        <p class="ct-note">También podés escribirnos por LinkedIn o Instagram</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="fl"><span class="flo">Ocho</span><span class="fls">S</span><span class="flt">tudio</span></a>
+  <div class="flinks">
+    <a href="https://www.linkedin.com/company/ochostudio-resultados-medibles-para-tu-negocio/" target="_blank">LinkedIn</a>
+    <a href="https://wa.me/5491122612775" target="_blank">WhatsApp</a>
+    <a href="mailto:AaronBlanco@weareochostudio.com">Email</a>
+  </div>
+  <div class="fcp">© 2025 ochostudio · CABA, Argentina</div>
+</footer>
+
+<script>
+const c=document.getElementById('c'),cr=document.getElementById('cr');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{c.style.width='12px';c.style.height='12px';cr.style.width='50px';cr.style.height='50px'});
+  el.addEventListener('mouseleave',()=>{c.style.width='8px';c.style.height='8px';cr.style.width='36px';cr.style.height='36px'});
+});
+</script>
+</body>
+</html>
