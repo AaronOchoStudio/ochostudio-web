@@ -12,3 +12,7 @@ assets/Videos/
 # OS
 .DS_Store
 Thumbs.db
+
+.vercel
+node_modules/
+.vercel
