@@ -40,6 +40,7 @@ body {
   font-family: var(--f-body);
   font-size: 16px;
   line-height: 1.6;
+  width: 100%;
   overflow-x: hidden;
 }
 
@@ -47,6 +48,14 @@ img, video { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; }
 button { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
+
+section, header, footer, div {
+  max-width: 100%;
+}
+
+section {
+  overflow: hidden;
+}
 
 /* Hide native cursor on hover-capable desktop */
 @media (hover: hover) and (pointer: fine) {
@@ -78,10 +87,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
 
 .section-title {
   font-family: var(--f-display);
-  font-size: clamp(52px, 10vw, 96px);
+  font-size: clamp(40px, 8vw, 96px);
   line-height: 0.92;
   letter-spacing: 0.01em;
   margin-bottom: 20px;
+  word-break: break-word;
 }
 
 .section-sub {
@@ -89,7 +99,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
   font-weight: 300;
   color: rgba(255,255,255,0.55);
   line-height: 1.7;
-  max-width: 480px;
+  max-width: min(480px, 100%);
 }
 
 /* ── BUTTONS ─────────────────────────────────────────────── */
@@ -372,11 +382,12 @@ body.menu-open { overflow: hidden; }
 
 .hero__headline {
   font-family: var(--f-display);
-  font-size: clamp(72px, 16vw, 160px);
+  font-size: clamp(52px, 14vw, 160px);
   line-height: 0.88;
   letter-spacing: 0.01em;
   margin-bottom: 24px;
   margin-top: 12px;
+  word-break: break-word;
 }
 
 .hero__sub {
@@ -412,6 +423,7 @@ body.menu-open { overflow: hidden; }
 /* ── MARQUEE ─────────────────────────────────────────────── */
 .marquee {
   overflow: hidden;
+  width: 100%;
   padding-block: 14px;
   border-block: 1px solid var(--border);
   background: var(--bg2);
@@ -461,11 +473,12 @@ body.menu-open { overflow: hidden; }
 
 .statement__headline {
   font-family: var(--f-display);
-  font-size: clamp(52px, 11vw, 100px);
+  font-size: clamp(36px, 10vw, 100px);
   line-height: 0.9;
   letter-spacing: 0.01em;
   margin-bottom: 24px;
   margin-top: 8px;
+  word-break: break-word;
 }
 
 .statement__body {
@@ -473,7 +486,7 @@ body.menu-open { overflow: hidden; }
   font-weight: 300;
   color: rgba(255,255,255,0.55);
   line-height: 1.8;
-  max-width: 480px;
+  max-width: min(480px, 100%);
 }
 
 .stats-grid {
@@ -488,17 +501,18 @@ body.menu-open { overflow: hidden; }
 
 .stat-card {
   background: var(--bg2);
-  padding: 32px 24px;
+  padding: clamp(16px, 4vw, 32px) clamp(12px, 3vw, 24px);
   display: flex;
   flex-direction: column;
   gap: 12px;
   transition: background 0.2s;
+  overflow: hidden;
 }
 .stat-card:hover { background: var(--bg3); }
 
 .stat-card__num {
   font-family: var(--f-display);
-  font-size: clamp(44px, 8vw, 64px);
+  font-size: clamp(36px, 7vw, 64px);
   line-height: 1;
   letter-spacing: 0.01em;
   color: var(--accent);
@@ -551,10 +565,11 @@ body.menu-open { overflow: hidden; }
 
 .telesilla__quote {
   font-family: var(--f-display);
-  font-size: clamp(40px, 8vw, 88px);
+  font-size: clamp(32px, 8vw, 88px);
   line-height: 0.95;
   letter-spacing: 0.02em;
   color: var(--white);
+  word-break: break-word;
 }
 
 /* ── SERVICES ────────────────────────────────────────────── */
@@ -683,15 +698,16 @@ body.menu-open { overflow: hidden; }
   z-index: 1;
   text-align: center;
   padding-inline: 20px;
-  max-width: 900px;
+  max-width: min(900px, 100%);
 }
 
 .mid-video__text {
   font-family: var(--f-display);
-  font-size: clamp(36px, 7vw, 80px);
+  font-size: clamp(28px, 6vw, 80px);
   line-height: 0.95;
   letter-spacing: 0.02em;
   color: var(--white);
+  word-break: break-word;
 }
 
 .mid-video__text .char {
@@ -783,11 +799,12 @@ body.menu-open { overflow: hidden; }
 
 .proceso__title {
   font-family: var(--f-display);
-  font-size: clamp(56px, 12vw, 120px);
+  font-size: clamp(40px, 10vw, 120px);
   line-height: 0.88;
   letter-spacing: 0.01em;
   margin-bottom: 64px;
   margin-top: 12px;
+  word-break: break-word;
 }
 
 .proceso__steps {
@@ -827,7 +844,7 @@ body.menu-open { overflow: hidden; }
   font-weight: 300;
   color: rgba(255,255,255,0.5);
   line-height: 1.7;
-  max-width: 52ch;
+  max-width: min(52ch, 100%);
 }
 
 /* ── CTA FINAL ───────────────────────────────────────────── */
@@ -843,11 +860,12 @@ body.menu-open { overflow: hidden; }
 
 .cta-final__headline {
   font-family: var(--f-display);
-  font-size: clamp(64px, 14vw, 136px);
+  font-size: clamp(48px, 12vw, 136px);
   line-height: 0.88;
   letter-spacing: 0.01em;
   margin-bottom: 24px;
   margin-top: 12px;
+  word-break: break-word;
 }
 
 .cta-final__sub {
