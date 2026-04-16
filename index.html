@@ -3,328 +3,596 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ocho Studio — Estudio de diseño y estrategia creativa.">
-  <title>Ocho Studio</title>
+  <title>ochostudio — Marketing Digital que Mueve</title>
+  <meta name="description" content="Agencia de marketing digital. Estrategia, contenido y automatización con IA. De Buenos Aires para el mundo.">
+  <meta property="og:title" content="ochostudio — Marketing Digital que Mueve">
+  <meta property="og:description" content="Estrategia, contenido y automatización con IA. Resultados medibles desde el día uno.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- CURSOR (desktop only, hidden via CSS on touch) -->
+  <div id="cursor-dot" aria-hidden="true">
+    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="1" x2="10" y2="19" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="1"  y1="10" x2="19" y2="10" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="3.5" y1="3.5"  x2="16.5" y2="16.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="16.5" y1="3.5" x2="3.5"  y2="16.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="7.5" y1="5"    x2="10"   y2="7.5"  stroke="white" stroke-width="1" stroke-linecap="round"/>
+      <line x1="12.5" y1="5"   x2="10"   y2="7.5"  stroke="white" stroke-width="1" stroke-linecap="round"/>
+      <line x1="7.5"  y1="15"  x2="10"   y2="12.5" stroke="white" stroke-width="1" stroke-linecap="round"/>
+      <line x1="12.5" y1="15"  x2="10"   y2="12.5" stroke="white" stroke-width="1" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <canvas id="cursor-canvas" aria-hidden="true"></canvas>
+
+  <!-- WA FLOATING BUTTON -->
+  <a
+    href="https://wa.me/5491122612775?text=Hola%20Aaron%2C%20vi%20la%20web%20de%20ochostudio%20y%20me%20interesa%20saber%20m%C3%A1s"
+    class="wa-float"
+    target="_blank"
+    rel="noopener"
+    aria-label="Escribinos por WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 1.773.46 3.441 1.265 4.897L2 22l5.252-1.374A9.947 9.947 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.198a8.197 8.197 0 0 1-4.277-1.199l-.307-.184-3.116.816.83-3.044-.198-.318A8.196 8.196 0 1 1 12 20.198z"/>
+    </svg>
+    <span>¿Hablamos?</span>
+  </a>
+
+  <!-- ── NAV ──────────────────────────────────────────────── -->
   <header class="nav" id="nav">
-    <a href="#" class="nav__logo">Ocho Studio</a>
-    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+    <a href="#" class="nav__logo">
+      <span class="logo-ocho">ocho</span><span class="logo-s">S</span><span class="logo-tudio">tudio</span>
+    </a>
+    <nav class="nav__links" id="navLinks">
+      <a href="#servicios">Servicios</a>
+      <a href="#automatizaciones">Automatizaciones</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto" class="nav__cta">Contacto</a>
+    </nav>
+    <button class="nav__burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false">
       <span></span>
       <span></span>
     </button>
-    <nav class="nav__menu" id="navMenu">
-      <a href="#trabajo">Trabajo</a>
-      <a href="#estudio">Estudio</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
   </header>
 
-  <!-- HERO -->
-  <section class="hero" id="inicio">
-    <div class="hero__video-wrap">
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav class="mobile-menu__nav">
+      <a href="#servicios">Servicios</a>
+      <a href="#automatizaciones">Automatizaciones</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="mobile-menu__footer">
+      <a href="https://wa.me/5491122612775" target="_blank" rel="noopener">+54 9 11 2261-2775</a>
+      <a href="mailto:AaronBlanco@weareochostudio.com">AaronBlanco@weareochostudio.com</a>
+    </div>
+  </div>
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <section id="hero" class="hero">
+    <div class="hero__video-wrap" id="heroVideoWrap">
       <video
         class="hero__video"
-        src="assets/videos/hero.mp4.mp4"
-        autoplay
-        muted
-        loop
-        playsinline
+        src="assets/videos/hero.mp4"
+        poster="assets/images/poster-hero.jpg"
+        autoplay muted loop playsinline
       ></video>
-      <div class="hero__overlay"></div>
     </div>
-    <div class="hero__content">
-      <p class="hero__eyebrow">Estudio creativo</p>
-      <h1 class="hero__headline">Diseño que mueve<br>lo que importa</h1>
-      <a href="#trabajo" class="btn btn--ghost">Ver trabajo</a>
+    <div class="hero__overlay"></div>
+    <div class="hero__content container">
+      <p class="label label--accent">De Buenos Aires para el mundo</p>
+      <h1 class="hero__headline">
+        TU NEGOCIO<br>
+        EN <span class="accent">VELOCIDAD</span><br>
+        MÁXIMA
+      </h1>
+      <p class="hero__sub">
+        Estrategia digital, contenido y automatización con IA.<br>
+        Resultados medibles desde el día uno.
+      </p>
+      <div class="hero__ctas">
+        <a
+          href="https://wa.me/5491122612775?text=Hola%20Aaron%2C%20vi%20la%20web%20de%20ochostudio%20y%20me%20interesa%20saber%20m%C3%A1s"
+          class="btn-wa"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 1.773.46 3.441 1.265 4.897L2 22l5.252-1.374A9.947 9.947 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.198a8.197 8.197 0 0 1-4.277-1.199l-.307-.184-3.116.816.83-3.044-.198-.318A8.196 8.196 0 1 1 12 20.198z"/>
+          </svg>
+          Hablá con nosotros
+        </a>
+        <a href="#servicios" class="btn-ghost">Ver servicios</a>
+      </div>
     </div>
-    <a href="#trabajo" class="hero__scroll" aria-label="Bajar">
+    <a href="#marquee" class="hero__scroll" aria-label="Bajar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M12 5v14M5 12l7 7 7-7"/>
       </svg>
     </a>
   </section>
 
-  <!-- CLIENTS / MARQUEE -->
-  <section class="clients">
-    <div class="clients__track">
-      <span>Branding</span>
-      <span class="dot">·</span>
-      <span>Estrategia</span>
-      <span class="dot">·</span>
-      <span>Identidad visual</span>
-      <span class="dot">·</span>
-      <span>Motion</span>
-      <span class="dot">·</span>
-      <span>Digital</span>
-      <span class="dot">·</span>
-      <span>Dirección creativa</span>
-      <span class="dot">·</span>
-      <span>Packaging</span>
-      <span class="dot">·</span>
-      <span>Naming</span>
-      <span class="dot">·</span>
+  <!-- ── MARQUEE ───────────────────────────────────────────── -->
+  <div class="marquee" id="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Redes Sociales</span><span class="sep">✦</span>
+      <span>Google Ads</span><span class="sep">✦</span>
+      <span>Meta Ads</span><span class="sep">✦</span>
+      <span>SEO</span><span class="sep">✦</span>
+      <span>WhatsApp Business</span><span class="sep">✦</span>
+      <span>Automatización IA</span><span class="sep">✦</span>
+      <span>Desarrollo Web</span><span class="sep">✦</span>
+      <span>Identidad Visual</span><span class="sep">✦</span>
+      <span>Fotografía</span><span class="sep">✦</span>
+      <span>GEO &amp; AEO</span><span class="sep">✦</span>
+      <span>Redes Sociales</span><span class="sep">✦</span>
+      <span>Google Ads</span><span class="sep">✦</span>
+      <span>Meta Ads</span><span class="sep">✦</span>
+      <span>SEO</span><span class="sep">✦</span>
+      <span>WhatsApp Business</span><span class="sep">✦</span>
+      <span>Automatización IA</span><span class="sep">✦</span>
+      <span>Desarrollo Web</span><span class="sep">✦</span>
+      <span>Identidad Visual</span><span class="sep">✦</span>
+      <span>Fotografía</span><span class="sep">✦</span>
+      <span>GEO &amp; AEO</span><span class="sep">✦</span>
     </div>
-  </section>
+  </div>
 
-  <!-- TRABAJO -->
-  <section class="work" id="trabajo">
+  <!-- ── STATEMENT ─────────────────────────────────────────── -->
+  <section id="statement" class="statement">
     <div class="container">
-      <div class="section-header">
-        <span class="section-label">01 — Trabajo</span>
-        <h2 class="section-title">Proyectos seleccionados</h2>
+      <div class="statement__inner">
+        <div class="statement__text js-fade">
+          <span class="label">El problema</span>
+          <h2 class="statement__headline">
+            ESTÁS PERDIENDO<br>VENTAS SIN<br>DARTE CUENTA
+          </h2>
+          <p class="statement__body">
+            Cada día que tu negocio no tiene una estrategia digital sólida,
+            tu competencia avanza. No alcanza con publicar un post de vez en cuando.
+            Se necesita sistema, consistencia y tecnología trabajando juntos.
+            Eso es exactamente lo que construimos.
+          </p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card js-fade">
+            <span class="stat-card__num" data-final="IA">IA</span>
+            <p class="stat-card__desc">Agentes de inteligencia artificial trabajando para tu negocio</p>
+          </div>
+          <div class="stat-card js-fade">
+            <span class="stat-card__num" data-final="24/7">24/7</span>
+            <p class="stat-card__desc">Disponibles siempre. Tu negocio no tiene horario y nosotros tampoco</p>
+          </div>
+          <div class="stat-card js-fade">
+            <span class="stat-card__num" data-final="0">0</span>
+            <p class="stat-card__desc">Contratos mínimos. Generamos compromiso, no ataduras</p>
+          </div>
+          <div class="stat-card js-fade">
+            <span class="stat-card__num" data-final="-80%">-80%</span>
+            <p class="stat-card__desc">Menos trabajo manual. Más margen. Más tiempo para lo que importa</p>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="work__grid">
-
-      <article class="work__item work__item--featured">
-        <a href="#" class="work__link">
-          <div class="work__media">
-            <img
-              src="assets/images/telesilla.jpg.jpg"
-              alt="Proyecto Telesilla"
-              loading="lazy"
-            >
-          </div>
-          <div class="work__info">
-            <h3 class="work__title">Telesilla</h3>
-            <p class="work__desc">Identidad visual y estrategia de marca para destino de montaña.</p>
-            <div class="work__meta">
-              <span>Branding</span>
-              <span>2024</span>
-            </div>
-          </div>
-        </a>
-      </article>
-
-      <article class="work__item">
-        <a href="#" class="work__link">
-          <div class="work__media work__media--placeholder">
-            <span>Próximamente</span>
-          </div>
-          <div class="work__info">
-            <h3 class="work__title">Proyecto 02</h3>
-            <p class="work__desc">Identidad y sistema de comunicación para marca en expansión.</p>
-            <div class="work__meta">
-              <span>Identidad</span>
-              <span>2024</span>
-            </div>
-          </div>
-        </a>
-      </article>
-
-      <article class="work__item">
-        <a href="#" class="work__link">
-          <div class="work__media work__media--placeholder">
-            <span>Próximamente</span>
-          </div>
-          <div class="work__info">
-            <h3 class="work__title">Proyecto 03</h3>
-            <p class="work__desc">Dirección creativa y producción para lanzamiento de producto.</p>
-            <div class="work__meta">
-              <span>Motion</span>
-              <span>2025</span>
-            </div>
-          </div>
-        </a>
-      </article>
-
-    </div>
   </section>
 
-  <!-- MID VIDEO / MANIFESTO -->
-  <section class="manifesto">
-    <div class="manifesto__video-wrap">
-      <video
-        class="manifesto__video"
-        src="assets/videos/mid.mp4.mp4"
-        autoplay
-        muted
-        loop
-        playsinline
-      ></video>
-      <div class="manifesto__overlay"></div>
+  <!-- ── TELESILLA ──────────────────────────────────────────── -->
+  <section id="telesilla-section" class="telesilla">
+    <div class="telesilla__img-wrap" id="telesilla-img-wrap">
+      <img
+        src="assets/images/telesilla.jpg"
+        alt="Vista desde la telesilla — perspectiva de velocidad y altura"
+        loading="lazy"
+      >
     </div>
-    <div class="manifesto__content container">
-      <blockquote class="manifesto__quote">
-        "Creemos que el diseño honesto<br>
-        construye marcas que duran."
+    <div class="telesilla__overlay"></div>
+    <div class="telesilla__content">
+      <blockquote class="telesilla__quote js-fade">
+        MIENTRAS OTROS DUDAN,<br>
+        NOSOTROS NOS <span class="accent">LANZAMOS</span>
       </blockquote>
     </div>
   </section>
 
-  <!-- ESTUDIO -->
-  <section class="studio" id="estudio">
+  <!-- ── SERVICIOS ──────────────────────────────────────────── -->
+  <section id="servicios" class="services">
     <div class="container">
-      <div class="studio__inner">
-        <div class="studio__text">
-          <span class="section-label">02 — Estudio</span>
-          <h2 class="section-title">Somos Ocho</h2>
-          <p class="studio__body">
-            Un estudio creativo fundado sobre la convicción de que el diseño tiene
-            que ganar su lugar — con trabajo preciso, intencional y duradero.
-          </p>
-          <p class="studio__body">
-            Trabajamos con marcas que quieren decir algo real. Desde la estrategia
-            hasta los últimos píxeles, somos el equipo que acompaña todo el proceso.
-          </p>
-          <a href="#contacto" class="btn btn--primary">Hablemos</a>
-        </div>
-        <div class="studio__stats">
-          <div class="stat">
-            <span class="stat__number">8+</span>
-            <span class="stat__label">Años de trabajo</span>
+      <div class="services__header js-fade">
+        <span class="label">Lo que hacemos</span>
+        <h2 class="section-title">NUESTROS<br>SERVICIOS</h2>
+        <p class="section-sub">Todo lo que necesita tu negocio para crecer en digital. Sin excusas.</p>
+      </div>
+      <div class="services__grid" id="servicesGrid">
+
+        <div class="service-card">
+          <div class="service-card__top">
+            <span class="service-card__num">01</span>
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+            </div>
           </div>
-          <div class="stat">
-            <span class="stat__number">60+</span>
-            <span class="stat__label">Proyectos entregados</span>
-          </div>
-          <div class="stat">
-            <span class="stat__number">3</span>
-            <span class="stat__label">Disciplinas core</span>
-          </div>
-          <div class="stat">
-            <span class="stat__number">∞</span>
-            <span class="stat__label">Revisiones incluidas</span>
+          <h3 class="service-card__title">Gestión de redes sociales</h3>
+          <p class="service-card__desc">Contenido mensual planificado, diseño gráfico incluido, respuesta a comentarios y DMs. Tu marca activa todos los días.</p>
+          <div class="service-card__tags">
+            <span>Contenido</span><span>Diseño</span><span>Community</span>
           </div>
         </div>
+
+        <div class="service-card">
+          <div class="service-card__top">
+            <span class="service-card__num">02</span>
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="6"/>
+                <circle cx="12" cy="12" r="2"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="service-card__title">Google Ads &amp; Meta Ads</h3>
+          <p class="service-card__desc">Campañas gestionadas y optimizadas semanalmente. Creatividades incluidas. El presupuesto de pauta lo manejás vos.</p>
+          <div class="service-card__tags">
+            <span>Google</span><span>Meta</span><span>ROI</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__top">
+            <span class="service-card__num">03</span>
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                <line x1="11" y1="8" x2="11" y2="14"/>
+                <line x1="8" y1="11" x2="14" y2="11"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="service-card__title">SEO &amp; Google Business</h3>
+          <p class="service-card__desc">Aparecé donde buscan tus clientes. Auditoría SEO, optimización de contenido, gestión del perfil de Google.</p>
+          <div class="service-card__tags">
+            <span>SEO</span><span>GBP</span><span>Orgánico</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__top">
+            <span class="service-card__num">04</span>
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                <line x1="8" y1="10" x2="8.01" y2="10"/>
+                <line x1="12" y1="10" x2="12.01" y2="10"/>
+                <line x1="16" y1="10" x2="16.01" y2="10"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="service-card__title">WhatsApp Business</h3>
+          <p class="service-card__desc">Perfil configurado, mensajes automáticos, catálogo de productos, organización de contactos.</p>
+          <div class="service-card__tags">
+            <span>Automatización</span><span>CRM</span><span>Catálogo</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__top">
+            <span class="service-card__num">05</span>
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="6" height="6" rx="1"/>
+                <path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="service-card__title">Automatización con IA</h3>
+          <p class="service-card__desc">Flujos que trabajan solos: respuestas, seguimientos, reportes. Tu operación corre 24/7.</p>
+          <div class="service-card__tags">
+            <span>IA</span><span>Flujos</span><span>24/7</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__top">
+            <span class="service-card__num">06</span>
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="service-card__title">Desarrollo web</h3>
+          <p class="service-card__desc">Landing pages y sitios que convierten. Diseño, código y publicación. Con formulario con respuesta IA.</p>
+          <div class="service-card__tags">
+            <span>Landing</span><span>Conversión</span><span>IA Form</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__top">
+            <span class="service-card__num">07</span>
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="service-card__title">Identidad visual &amp; marca</h3>
+          <p class="service-card__desc">Logo, paleta, tipografía, manual de marca completo.</p>
+          <div class="service-card__tags">
+            <span>Logo</span><span>Branding</span><span>Manual</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card__top">
+            <span class="service-card__num">08</span>
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="14.31" y1="8" x2="20.05" y2="17.94"/>
+                <line x1="9.69"  y1="8" x2="21.17" y2="8"/>
+                <line x1="7.38"  y1="12" x2="13.12" y2="2.06"/>
+                <line x1="9.69"  y1="16" x2="3.95" y2="6.06"/>
+                <line x1="14.31" y1="16" x2="2.83" y2="16"/>
+                <line x1="16.62" y1="12" x2="10.88" y2="21.94"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="service-card__title">Fotografía &amp; contenido visual</h3>
+          <p class="service-card__desc">Sesiones de marca, imágenes para redes y web.</p>
+          <div class="service-card__tags">
+            <span>Foto</span><span>Video</span><span>Marca</span>
+          </div>
+        </div>
+
+        <div class="service-card service-card--featured">
+          <div class="service-card__top">
+            <span class="service-card__num">09</span>
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="service-card__title">GEO &amp; AEO — Presencia en IA</h3>
+          <p class="service-card__desc">Optimizamos para aparecer en ChatGPT, Gemini y Perplexity. El SEO del futuro, hoy.</p>
+          <div class="service-card__tags">
+            <span>ChatGPT</span><span>Gemini</span><span>Perplexity</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- SERVICIOS -->
-  <section class="services" id="servicios">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">03 — Servicios</span>
-        <h2 class="section-title">Lo que hacemos</h2>
-      </div>
-      <ul class="services__list">
-        <li class="services__item">
-          <div class="services__num">01</div>
-          <div class="services__body">
-            <h3 class="services__name">Branding &amp; Identidad</h3>
-            <p class="services__desc">
-              Naming, identidad visual, sistema de marca y guía de uso. Construimos
-              la base que sostiene todo lo que viene.
-            </p>
-          </div>
-          <div class="services__tags">
-            <span>Naming</span>
-            <span>Logo</span>
-            <span>Sistema visual</span>
-            <span>Brand book</span>
-          </div>
-        </li>
-        <li class="services__item">
-          <div class="services__num">02</div>
-          <div class="services__body">
-            <h3 class="services__name">Estrategia creativa</h3>
-            <p class="services__desc">
-              Posicionamiento, narrativa y arquitectura de marca. Definimos qué
-              decir, cómo decirlo y a quién.
-            </p>
-          </div>
-          <div class="services__tags">
-            <span>Posicionamiento</span>
-            <span>Narrativa</span>
-            <span>Arquetipos</span>
-          </div>
-        </li>
-        <li class="services__item">
-          <div class="services__num">03</div>
-          <div class="services__body">
-            <h3 class="services__name">Digital &amp; Motion</h3>
-            <p class="services__desc">
-              Sitios web, campañas digitales y piezas en movimiento. El diseño
-              cobrado de vida en cada plataforma.
-            </p>
-          </div>
-          <div class="services__tags">
-            <span>Web design</span>
-            <span>Motion graphics</span>
-            <span>Contenido digital</span>
-          </div>
-        </li>
-        <li class="services__item">
-          <div class="services__num">04</div>
-          <div class="services__body">
-            <h3 class="services__name">Dirección de arte</h3>
-            <p class="services__desc">
-              Producción fotográfica, dirección visual y supervisión creativa
-              para campañas y lanzamientos.
-            </p>
-          </div>
-          <div class="services__tags">
-            <span>Fotografía</span>
-            <span>Producción</span>
-            <span>Campaña</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- CTA VIDEO -->
-  <section class="cta-section" id="contacto">
-    <div class="cta-section__video-wrap">
+  <!-- ── MID VIDEO ─────────────────────────────────────────── -->
+  <section id="mid-video" class="mid-video">
+    <div class="mid-video__wrap">
       <video
-        class="cta-section__video"
-        src="assets/videos/cta,mp4.mp4"
-        autoplay
-        muted
-        loop
-        playsinline
+        src="assets/videos/mid.mp4"
+        poster="assets/images/poster-mid.jpg"
+        autoplay muted loop playsinline
+        preload="none"
       ></video>
-      <div class="cta-section__overlay"></div>
+      <div class="mid-video__overlay"></div>
     </div>
-    <div class="cta-section__content container">
-      <span class="section-label section-label--light">04 — Contacto</span>
-      <h2 class="cta-section__headline">¿Tenés un proyecto<br>en mente?</h2>
-      <p class="cta-section__sub">
-        Contanos de qué se trata. Respondemos en menos de 24 horas.
+    <div class="mid-video__content">
+      <p class="mid-video__text" id="mid-text">
+        MIENTRAS TU COMPETENCIA DUERME, TUS AUTOMACIONES TRABAJAN
       </p>
-      <a href="mailto:hola@ochostudio.com" class="btn btn--white">
-        hola@ochostudio.com
-      </a>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ── AUTOMATIZACIONES ──────────────────────────────────── -->
+  <section id="automatizaciones" class="autos">
+    <div class="container">
+      <div class="autos__header js-fade">
+        <span class="label">Automatizaciones</span>
+        <h2 class="section-title">
+          TU INDUSTRIA,<br>EN PILOTO <span class="accent">AUTOMÁTICO</span>
+        </h2>
+        <p class="section-sub">Diseñamos flujos con IA para que cada rubro tenga su propia operación corriendo sola.</p>
+      </div>
+      <div class="autos__grid">
+
+        <div class="auto-card js-fade">
+          <p class="auto-card__sector">Gastronomía</p>
+          <div class="auto-card__items">
+            <span>Reservas</span><span>Stock</span><span>Consultas</span>
+          </div>
+        </div>
+        <div class="auto-card js-fade">
+          <p class="auto-card__sector">Salud &amp; Clínicas</p>
+          <div class="auto-card__items">
+            <span>Turnos</span><span>Recordatorios</span><span>CRM</span>
+          </div>
+        </div>
+        <div class="auto-card js-fade">
+          <p class="auto-card__sector">Inmobiliarias</p>
+          <div class="auto-card__items">
+            <span>Leads</span><span>Calificación</span><span>Agenda</span>
+          </div>
+        </div>
+        <div class="auto-card js-fade">
+          <p class="auto-card__sector">Retail &amp; Boutiques</p>
+          <div class="auto-card__items">
+            <span>Posts</span><span>Stock</span><span>Catálogo auto</span>
+          </div>
+        </div>
+        <div class="auto-card js-fade">
+          <p class="auto-card__sector">Fitness &amp; Gimnasios</p>
+          <div class="auto-card__items">
+            <span>Ventas</span><span>Seguimiento</span><span>Cierre</span>
+          </div>
+        </div>
+        <div class="auto-card js-fade">
+          <p class="auto-card__sector">Hotelería &amp; Hospitalidad</p>
+          <div class="auto-card__items">
+            <span>Reservas</span><span>Huéspedes</span><span>Reseñas</span>
+          </div>
+        </div>
+        <div class="auto-card js-fade">
+          <p class="auto-card__sector">Servicios Profesionales</p>
+          <div class="auto-card__items">
+            <span>Reportes</span><span>Propuestas</span><span>CRM</span>
+          </div>
+        </div>
+        <div class="auto-card js-fade">
+          <p class="auto-card__sector">E-commerce</p>
+          <div class="auto-card__items">
+            <span>Órdenes</span><span>Posventa</span><span>Recompra</span>
+          </div>
+        </div>
+        <div class="auto-card js-fade">
+          <p class="auto-card__sector">Educación &amp; Cursos</p>
+          <div class="auto-card__items">
+            <span>Inscripciones</span><span>Recordatorios</span><span>Seguimiento</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROCESO ───────────────────────────────────────────── -->
+  <section id="proceso" class="proceso">
+    <div class="proceso__bg">
+      <video
+        src="assets/videos/cta.mp4"
+        poster="assets/images/poster-cta.jpg"
+        autoplay muted loop playsinline
+        preload="none"
+      ></video>
+      <div class="proceso__overlay"></div>
+    </div>
+    <div class="proceso__content container">
+      <span class="label label--light">Cómo trabajamos</span>
+      <h2 class="proceso__title">EL PROCESO</h2>
+      <div class="proceso__steps">
+
+        <div class="proceso__step js-fade">
+          <span class="proceso__num">01</span>
+          <div class="proceso__step-body">
+            <h3 class="proceso__step-title">Diagnóstico gratuito</h3>
+            <p class="proceso__step-desc">30 minutos para entender tu negocio, tu competencia y dónde están las oportunidades reales.</p>
+          </div>
+        </div>
+
+        <div class="proceso__step js-fade">
+          <span class="proceso__num">02</span>
+          <div class="proceso__step-body">
+            <h3 class="proceso__step-title">Estrategia a medida</h3>
+            <p class="proceso__step-desc">Plan digital personalizado con canales, métricas y objetivos claros para tu industria.</p>
+          </div>
+        </div>
+
+        <div class="proceso__step js-fade">
+          <span class="proceso__num">03</span>
+          <div class="proceso__step-body">
+            <h3 class="proceso__step-title">Implementación express</h3>
+            <p class="proceso__step-desc">Arrancamos en 72 horas desde la aprobación. Nada de semanas esperando.</p>
+          </div>
+        </div>
+
+        <div class="proceso__step js-fade">
+          <span class="proceso__num">04</span>
+          <div class="proceso__step-body">
+            <h3 class="proceso__step-title">Seguimiento semanal</h3>
+            <p class="proceso__step-desc">Reportes claros cada semana. Qué funcionó, qué optimizamos, qué viene.</p>
+          </div>
+        </div>
+
+        <div class="proceso__step js-fade">
+          <span class="proceso__num">05</span>
+          <div class="proceso__step-body">
+            <h3 class="proceso__step-title">Crecimiento continuo</h3>
+            <p class="proceso__step-desc">Escalamos lo que funciona, eliminamos lo que no. Sin parar.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA FINAL ─────────────────────────────────────────── -->
+  <section id="contacto" class="cta-final">
+    <div class="container">
+      <div class="cta-final__inner js-fade">
+        <span class="label label--accent">¿Empezamos?</span>
+        <h2 class="cta-final__headline">
+          ¿LISTO PARA<br><span class="accent">ARRANCAR?</span>
+        </h2>
+        <p class="cta-final__sub">
+          Un diagnóstico gratuito. Sin compromisos.<br>
+          Mostranos tu negocio y te decimos qué haríamos.
+        </p>
+        <div class="cta-final__actions">
+          <a
+            href="https://wa.me/5491122612775?text=Hola%20Aaron%2C%20vi%20la%20web%20de%20ochostudio%20y%20me%20interesa%20saber%20m%C3%A1s"
+            class="btn-wa-big"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 2C6.477 2 2 6.477 2 12c0 1.773.46 3.441 1.265 4.897L2 22l5.252-1.374A9.947 9.947 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.198a8.197 8.197 0 0 1-4.277-1.199l-.307-.184-3.116.816.83-3.044-.198-.318A8.196 8.196 0 1 1 12 20.198z"/>
+            </svg>
+            Hablemos por WhatsApp
+          </a>
+          <a href="mailto:AaronBlanco@weareochostudio.com" class="btn-email">
+            AaronBlanco@weareochostudio.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────────── -->
   <footer class="footer">
     <div class="container">
       <div class="footer__inner">
         <div class="footer__brand">
-          <span class="footer__logo">Ocho Studio</span>
-          <p class="footer__tagline">Diseño que mueve lo que importa.</p>
+          <p class="footer__logo">
+            <span>ocho</span><span class="accent">S</span><span>tudio</span>
+          </p>
+          <p class="footer__tagline">De Buenos Aires para el mundo.</p>
         </div>
         <nav class="footer__nav">
-          <div class="footer__col">
-            <p class="footer__col-title">Estudio</p>
-            <a href="#trabajo">Trabajo</a>
-            <a href="#estudio">Quiénes somos</a>
-            <a href="#servicios">Servicios</a>
-          </div>
-          <div class="footer__col">
-            <p class="footer__col-title">Contacto</p>
-            <a href="mailto:hola@ochostudio.com">hola@ochostudio.com</a>
-            <a href="https://instagram.com/ochostudio" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://linkedin.com/company/ochostudio" target="_blank" rel="noopener">LinkedIn</a>
-          </div>
+          <a href="#servicios">Servicios</a>
+          <a href="#automatizaciones">Automatizaciones</a>
+          <a href="#proceso">Proceso</a>
+          <a href="#contacto">Contacto</a>
+          <a href="https://instagram.com/ochostudio.agency" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://linkedin.com/company/ochostudio-resultados-medibles-para-tu-negocio" target="_blank" rel="noopener">LinkedIn</a>
         </nav>
       </div>
       <div class="footer__bottom">
-        <p>&copy; 2025 Ocho Studio. Todos los derechos reservados.</p>
-        <p>Buenos Aires, Argentina</p>
+        <p>&copy; 2025 ochostudio. Todos los derechos reservados.</p>
+        <a href="mailto:AaronBlanco@weareochostudio.com">AaronBlanco@weareochostudio.com</a>
       </div>
     </div>
   </footer>
 
+  <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
