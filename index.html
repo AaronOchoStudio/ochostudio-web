@@ -79,12 +79,11 @@
   <!-- ── HERO ─────────────────────────────────────────────── -->
   <section id="hero" class="hero">
     <div class="hero__video-wrap" id="heroVideoWrap">
-      <video
-        class="hero__video"
-        src="assets/videos/hero.mp4"
-        poster="assets/images/poster-hero.jpg"
+      <video id="hero-video" class="hero__video"
         autoplay muted loop playsinline
-      ></video>
+        poster="assets/images/poster-hero.jpg">
+        <source src="assets/videos/hero.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="hero__overlay"></div>
     <div class="hero__content container">
@@ -382,14 +381,13 @@
   </section>
 
   <!-- ── MID VIDEO ─────────────────────────────────────────── -->
-  <section id="mid-video" class="mid-video">
+  <section id="mid-section" class="mid-video">
     <div class="mid-video__wrap">
-      <video
-        src="assets/videos/mid.mp4"
+      <video id="mid-video" autoplay muted loop playsinline
         poster="assets/images/poster-mid.jpg"
-        autoplay muted loop playsinline
-        preload="none"
-      ></video>
+        preload="none">
+        <source src="assets/videos/mid.mp4" type="video/mp4">
+      </video>
       <div class="mid-video__overlay"></div>
     </div>
     <div class="mid-video__content">
@@ -473,12 +471,11 @@
   <!-- ── PROCESO ───────────────────────────────────────────── -->
   <section id="proceso" class="proceso">
     <div class="proceso__bg">
-      <video
-        src="assets/videos/cta.mp4"
+      <video id="cta-video" autoplay muted loop playsinline
         poster="assets/images/poster-cta.jpg"
-        autoplay muted loop playsinline
-        preload="none"
-      ></video>
+        preload="none">
+        <source src="assets/videos/cta.mp4" type="video/mp4">
+      </video>
       <div class="proceso__overlay"></div>
     </div>
     <div class="proceso__content container">
@@ -592,7 +589,7 @@
   <!-- SCRIPTS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
