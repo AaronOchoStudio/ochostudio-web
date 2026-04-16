@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ocho Studio — Estudio de diseño y estrategia creativa.">
+  <title>Ocho Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="#" class="nav__logo">Ocho Studio</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="nav__menu" id="navMenu">
+      <a href="#trabajo">Trabajo</a>
+      <a href="#estudio">Estudio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero__video-wrap">
+      <video
+        class="hero__video"
+        src="assets/videos/hero.mp4.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+      ></video>
+      <div class="hero__overlay"></div>
+    </div>
+    <div class="hero__content">
+      <p class="hero__eyebrow">Estudio creativo</p>
+      <h1 class="hero__headline">Diseño que mueve<br>lo que importa</h1>
+      <a href="#trabajo" class="btn btn--ghost">Ver trabajo</a>
+    </div>
+    <a href="#trabajo" class="hero__scroll" aria-label="Bajar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- CLIENTS / MARQUEE -->
+  <section class="clients">
+    <div class="clients__track">
+      <span>Branding</span>
+      <span class="dot">·</span>
+      <span>Estrategia</span>
+      <span class="dot">·</span>
+      <span>Identidad visual</span>
+      <span class="dot">·</span>
+      <span>Motion</span>
+      <span class="dot">·</span>
+      <span>Digital</span>
+      <span class="dot">·</span>
+      <span>Dirección creativa</span>
+      <span class="dot">·</span>
+      <span>Packaging</span>
+      <span class="dot">·</span>
+      <span>Naming</span>
+      <span class="dot">·</span>
+    </div>
+  </section>
+
+  <!-- TRABAJO -->
+  <section class="work" id="trabajo">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">01 — Trabajo</span>
+        <h2 class="section-title">Proyectos seleccionados</h2>
+      </div>
+    </div>
+
+    <div class="work__grid">
+
+      <article class="work__item work__item--featured">
+        <a href="#" class="work__link">
+          <div class="work__media">
+            <img
+              src="assets/images/telesilla.jpg.jpg"
+              alt="Proyecto Telesilla"
+              loading="lazy"
+            >
+          </div>
+          <div class="work__info">
+            <h3 class="work__title">Telesilla</h3>
+            <p class="work__desc">Identidad visual y estrategia de marca para destino de montaña.</p>
+            <div class="work__meta">
+              <span>Branding</span>
+              <span>2024</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <article class="work__item">
+        <a href="#" class="work__link">
+          <div class="work__media work__media--placeholder">
+            <span>Próximamente</span>
+          </div>
+          <div class="work__info">
+            <h3 class="work__title">Proyecto 02</h3>
+            <p class="work__desc">Identidad y sistema de comunicación para marca en expansión.</p>
+            <div class="work__meta">
+              <span>Identidad</span>
+              <span>2024</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <article class="work__item">
+        <a href="#" class="work__link">
+          <div class="work__media work__media--placeholder">
+            <span>Próximamente</span>
+          </div>
+          <div class="work__info">
+            <h3 class="work__title">Proyecto 03</h3>
+            <p class="work__desc">Dirección creativa y producción para lanzamiento de producto.</p>
+            <div class="work__meta">
+              <span>Motion</span>
+              <span>2025</span>
+            </div>
+          </div>
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- MID VIDEO / MANIFESTO -->
+  <section class="manifesto">
+    <div class="manifesto__video-wrap">
+      <video
+        class="manifesto__video"
+        src="assets/videos/mid.mp4.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+      ></video>
+      <div class="manifesto__overlay"></div>
+    </div>
+    <div class="manifesto__content container">
+      <blockquote class="manifesto__quote">
+        "Creemos que el diseño honesto<br>
+        construye marcas que duran."
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ESTUDIO -->
+  <section class="studio" id="estudio">
+    <div class="container">
+      <div class="studio__inner">
+        <div class="studio__text">
+          <span class="section-label">02 — Estudio</span>
+          <h2 class="section-title">Somos Ocho</h2>
+          <p class="studio__body">
+            Un estudio creativo fundado sobre la convicción de que el diseño tiene
+            que ganar su lugar — con trabajo preciso, intencional y duradero.
+          </p>
+          <p class="studio__body">
+            Trabajamos con marcas que quieren decir algo real. Desde la estrategia
+            hasta los últimos píxeles, somos el equipo que acompaña todo el proceso.
+          </p>
+          <a href="#contacto" class="btn btn--primary">Hablemos</a>
+        </div>
+        <div class="studio__stats">
+          <div class="stat">
+            <span class="stat__number">8+</span>
+            <span class="stat__label">Años de trabajo</span>
+          </div>
+          <div class="stat">
+            <span class="stat__number">60+</span>
+            <span class="stat__label">Proyectos entregados</span>
+          </div>
+          <div class="stat">
+            <span class="stat__number">3</span>
+            <span class="stat__label">Disciplinas core</span>
+          </div>
+          <div class="stat">
+            <span class="stat__number">∞</span>
+            <span class="stat__label">Revisiones incluidas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="services" id="servicios">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">03 — Servicios</span>
+        <h2 class="section-title">Lo que hacemos</h2>
+      </div>
+      <ul class="services__list">
+        <li class="services__item">
+          <div class="services__num">01</div>
+          <div class="services__body">
+            <h3 class="services__name">Branding &amp; Identidad</h3>
+            <p class="services__desc">
+              Naming, identidad visual, sistema de marca y guía de uso. Construimos
+              la base que sostiene todo lo que viene.
+            </p>
+          </div>
+          <div class="services__tags">
+            <span>Naming</span>
+            <span>Logo</span>
+            <span>Sistema visual</span>
+            <span>Brand book</span>
+          </div>
+        </li>
+        <li class="services__item">
+          <div class="services__num">02</div>
+          <div class="services__body">
+            <h3 class="services__name">Estrategia creativa</h3>
+            <p class="services__desc">
+              Posicionamiento, narrativa y arquitectura de marca. Definimos qué
+              decir, cómo decirlo y a quién.
+            </p>
+          </div>
+          <div class="services__tags">
+            <span>Posicionamiento</span>
+            <span>Narrativa</span>
+            <span>Arquetipos</span>
+          </div>
+        </li>
+        <li class="services__item">
+          <div class="services__num">03</div>
+          <div class="services__body">
+            <h3 class="services__name">Digital &amp; Motion</h3>
+            <p class="services__desc">
+              Sitios web, campañas digitales y piezas en movimiento. El diseño
+              cobrado de vida en cada plataforma.
+            </p>
+          </div>
+          <div class="services__tags">
+            <span>Web design</span>
+            <span>Motion graphics</span>
+            <span>Contenido digital</span>
+          </div>
+        </li>
+        <li class="services__item">
+          <div class="services__num">04</div>
+          <div class="services__body">
+            <h3 class="services__name">Dirección de arte</h3>
+            <p class="services__desc">
+              Producción fotográfica, dirección visual y supervisión creativa
+              para campañas y lanzamientos.
+            </p>
+          </div>
+          <div class="services__tags">
+            <span>Fotografía</span>
+            <span>Producción</span>
+            <span>Campaña</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA VIDEO -->
+  <section class="cta-section" id="contacto">
+    <div class="cta-section__video-wrap">
+      <video
+        class="cta-section__video"
+        src="assets/videos/cta,mp4.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+      ></video>
+      <div class="cta-section__overlay"></div>
+    </div>
+    <div class="cta-section__content container">
+      <span class="section-label section-label--light">04 — Contacto</span>
+      <h2 class="cta-section__headline">¿Tenés un proyecto<br>en mente?</h2>
+      <p class="cta-section__sub">
+        Contanos de qué se trata. Respondemos en menos de 24 horas.
+      </p>
+      <a href="mailto:hola@ochostudio.com" class="btn btn--white">
+        hola@ochostudio.com
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <span class="footer__logo">Ocho Studio</span>
+          <p class="footer__tagline">Diseño que mueve lo que importa.</p>
+        </div>
+        <nav class="footer__nav">
+          <div class="footer__col">
+            <p class="footer__col-title">Estudio</p>
+            <a href="#trabajo">Trabajo</a>
+            <a href="#estudio">Quiénes somos</a>
+            <a href="#servicios">Servicios</a>
+          </div>
+          <div class="footer__col">
+            <p class="footer__col-title">Contacto</p>
+            <a href="mailto:hola@ochostudio.com">hola@ochostudio.com</a>
+            <a href="https://instagram.com/ochostudio" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://linkedin.com/company/ochostudio" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Ocho Studio. Todos los derechos reservados.</p>
+        <p>Buenos Aires, Argentina</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

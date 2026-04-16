@@ -1,0 +1,14 @@
+# Videos (demasiado grandes para GitHub — servir desde CDN/hosting)
+assets/videos/
+assets/Videos/
+
+# Archivos temporales del editor
+*.txt
+*.bak
+
+# Claude Code
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
