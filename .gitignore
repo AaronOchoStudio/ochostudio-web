@@ -1,6 +1,7 @@
-# Videos (demasiado grandes para GitHub — servir desde CDN/hosting)
+# Assets grandes — no van a GitHub, sí a Vercel vía CLI
 assets/videos/
 assets/Videos/
+assets/frames/
 
 # Archivos temporales del editor
 *.txt

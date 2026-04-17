@@ -46,11 +46,9 @@
     </div>
   </div>
 
-  <!-- HERO -->
+  <!-- HERO — Canvas scroll-driven (57 frames) -->
   <section class="hero" id="hero">
-    <video class="hero__video" autoplay muted loop playsinline poster="assets/images/poster-hero.jpg">
-      <source src="assets/videos/hero.mp4" type="video/mp4">
-    </video>
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
     <div class="hero__overlay"></div>
     <div class="hero__content">
       <p class="label label--accent">De Buenos Aires para el mundo</p>
@@ -79,10 +77,15 @@
         <a href="#servicios" class="btn-ghost">Ver servicios</a>
       </div>
     </div>
+    <a href="#marquee" class="hero__scroll-hint" aria-label="Scrollear">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </a>
   </section>
 
   <!-- MARQUEE -->
-  <div class="marquee" aria-hidden="true">
+  <div class="marquee" id="marquee" aria-hidden="true">
     <div class="marquee__track">
       <span>Redes Sociales</span><span class="sep">✦</span>
       <span>Google Ads</span><span class="sep">✦</span>
@@ -125,19 +128,19 @@
         </div>
         <div class="stats-grid">
           <div class="stat-card">
-            <span class="stat-card__num" data-final="IA">IA</span>
+            <span class="stat-card__num">IA</span>
             <p class="stat-card__desc">Agentes de inteligencia artificial trabajando para tu negocio</p>
           </div>
           <div class="stat-card">
-            <span class="stat-card__num" data-final="24/7">24/7</span>
+            <span class="stat-card__num">24/7</span>
             <p class="stat-card__desc">Disponibles siempre. Tu negocio no tiene horario y nosotros tampoco</p>
           </div>
           <div class="stat-card">
-            <span class="stat-card__num" data-final="0">0</span>
+            <span class="stat-card__num">0</span>
             <p class="stat-card__desc">Contratos mínimos. Generamos compromiso, no ataduras</p>
           </div>
           <div class="stat-card">
-            <span class="stat-card__num" data-final="-80%">-80%</span>
+            <span class="stat-card__num">-80%</span>
             <p class="stat-card__desc">Menos trabajo manual. Más margen. Más tiempo para lo que importa</p>
           </div>
         </div>
@@ -145,17 +148,17 @@
     </div>
   </section>
 
-  <!-- TELESILLA -->
-  <section class="telesilla" id="telesilla">
+  <!-- QUOTE 1 — caida.jpg -->
+  <section class="quote1" id="quote1">
     <img
-      class="telesilla__img"
-      src="assets/images/telesilla.jpg"
-      alt="Vista desde la telesilla — perspectiva de velocidad y altura"
+      class="quote1__bg"
+      src="assets/images/caida.jpg"
+      alt="Bajada a toda velocidad"
       loading="lazy"
     >
-    <div class="telesilla__overlay"></div>
-    <div class="telesilla__content">
-      <h2 class="telesilla__quote">
+    <div class="quote1__overlay"></div>
+    <div class="quote1__content">
+      <h2 class="quote1__text">
         MIENTRAS OTROS DUDAN,<br>
         NOSOTROS NOS <span class="accent">LANZAMOS</span>
       </h2>
@@ -185,9 +188,7 @@
           </div>
           <h3 class="service-card__title">Gestión de redes sociales</h3>
           <p class="service-card__desc">Contenido mensual planificado, diseño gráfico incluido, respuesta a comentarios y DMs. Tu marca activa todos los días.</p>
-          <div class="service-card__tags">
-            <span>Contenido</span><span>Diseño</span><span>Community</span>
-          </div>
+          <div class="service-card__tags"><span>Contenido</span><span>Diseño</span><span>Community</span></div>
         </div>
 
         <div class="service-card">
@@ -195,17 +196,13 @@
             <span class="service-card__num">02</span>
             <div class="service-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/>
-                <circle cx="12" cy="12" r="6"/>
-                <circle cx="12" cy="12" r="2"/>
+                <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
               </svg>
             </div>
           </div>
           <h3 class="service-card__title">Google Ads &amp; Meta Ads</h3>
           <p class="service-card__desc">Campañas gestionadas y optimizadas semanalmente. Creatividades incluidas. El presupuesto de pauta lo manejás vos.</p>
-          <div class="service-card__tags">
-            <span>Google</span><span>Meta</span><span>ROI</span>
-          </div>
+          <div class="service-card__tags"><span>Google</span><span>Meta</span><span>ROI</span></div>
         </div>
 
         <div class="service-card">
@@ -213,18 +210,14 @@
             <span class="service-card__num">03</span>
             <div class="service-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                <line x1="11" y1="8" x2="11" y2="14"/>
-                <line x1="8" y1="11" x2="14" y2="11"/>
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
               </svg>
             </div>
           </div>
           <h3 class="service-card__title">SEO &amp; Google Business</h3>
           <p class="service-card__desc">Aparecé donde buscan tus clientes. Auditoría SEO, optimización de contenido, gestión del perfil de Google.</p>
-          <div class="service-card__tags">
-            <span>SEO</span><span>GBP</span><span>Orgánico</span>
-          </div>
+          <div class="service-card__tags"><span>SEO</span><span>GBP</span><span>Orgánico</span></div>
         </div>
 
         <div class="service-card">
@@ -233,17 +226,13 @@
             <div class="service-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                <line x1="8" y1="10" x2="8.01" y2="10"/>
-                <line x1="12" y1="10" x2="12.01" y2="10"/>
-                <line x1="16" y1="10" x2="16.01" y2="10"/>
+                <line x1="8" y1="10" x2="8.01" y2="10"/><line x1="12" y1="10" x2="12.01" y2="10"/><line x1="16" y1="10" x2="16.01" y2="10"/>
               </svg>
             </div>
           </div>
           <h3 class="service-card__title">WhatsApp Business</h3>
           <p class="service-card__desc">Perfil configurado, mensajes automáticos, catálogo de productos, organización de contactos.</p>
-          <div class="service-card__tags">
-            <span>Automatización</span><span>CRM</span><span>Catálogo</span>
-          </div>
+          <div class="service-card__tags"><span>Automatización</span><span>CRM</span><span>Catálogo</span></div>
         </div>
 
         <div class="service-card">
@@ -258,9 +247,7 @@
           </div>
           <h3 class="service-card__title">Automatización con IA</h3>
           <p class="service-card__desc">Flujos que trabajan solos: respuestas, seguimientos, reportes. Tu operación corre 24/7.</p>
-          <div class="service-card__tags">
-            <span>IA</span><span>Flujos</span><span>24/7</span>
-          </div>
+          <div class="service-card__tags"><span>IA</span><span>Flujos</span><span>24/7</span></div>
         </div>
 
         <div class="service-card">
@@ -268,16 +255,13 @@
             <span class="service-card__num">06</span>
             <div class="service-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="16 18 22 12 16 6"/>
-                <polyline points="8 6 2 12 8 18"/>
+                <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
               </svg>
             </div>
           </div>
           <h3 class="service-card__title">Desarrollo web</h3>
           <p class="service-card__desc">Landing pages y sitios que convierten. Diseño, código y publicación. Con formulario con respuesta IA.</p>
-          <div class="service-card__tags">
-            <span>Landing</span><span>Conversión</span><span>IA Form</span>
-          </div>
+          <div class="service-card__tags"><span>Landing</span><span>Conversión</span><span>IA Form</span></div>
         </div>
 
         <div class="service-card">
@@ -291,9 +275,7 @@
           </div>
           <h3 class="service-card__title">Identidad visual &amp; marca</h3>
           <p class="service-card__desc">Logo, paleta, tipografía, manual de marca completo.</p>
-          <div class="service-card__tags">
-            <span>Logo</span><span>Branding</span><span>Manual</span>
-          </div>
+          <div class="service-card__tags"><span>Logo</span><span>Branding</span><span>Manual</span></div>
         </div>
 
         <div class="service-card">
@@ -303,9 +285,9 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="10"/>
                 <line x1="14.31" y1="8" x2="20.05" y2="17.94"/>
-                <line x1="9.69"  y1="8" x2="21.17" y2="8"/>
-                <line x1="7.38"  y1="12" x2="13.12" y2="2.06"/>
-                <line x1="9.69"  y1="16" x2="3.95" y2="6.06"/>
+                <line x1="9.69" y1="8" x2="21.17" y2="8"/>
+                <line x1="7.38" y1="12" x2="13.12" y2="2.06"/>
+                <line x1="9.69" y1="16" x2="3.95" y2="6.06"/>
                 <line x1="14.31" y1="16" x2="2.83" y2="16"/>
                 <line x1="16.62" y1="12" x2="10.88" y2="21.94"/>
               </svg>
@@ -313,9 +295,7 @@
           </div>
           <h3 class="service-card__title">Fotografía &amp; contenido visual</h3>
           <p class="service-card__desc">Sesiones de marca, imágenes para redes y web.</p>
-          <div class="service-card__tags">
-            <span>Foto</span><span>Video</span><span>Marca</span>
-          </div>
+          <div class="service-card__tags"><span>Foto</span><span>Video</span><span>Marca</span></div>
         </div>
 
         <div class="service-card service-card--featured">
@@ -331,24 +311,23 @@
           </div>
           <h3 class="service-card__title">GEO &amp; AEO — Presencia en IA</h3>
           <p class="service-card__desc">Optimizamos para aparecer en ChatGPT, Gemini y Perplexity. El SEO del futuro, hoy.</p>
-          <div class="service-card__tags">
-            <span>ChatGPT</span><span>Gemini</span><span>Perplexity</span>
-          </div>
+          <div class="service-card__tags"><span>ChatGPT</span><span>Gemini</span><span>Perplexity</span></div>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- MID VIDEO -->
-  <section class="mid-video" id="mid-video-section">
-    <video class="mid-video__bg" autoplay muted loop playsinline poster="assets/images/poster-mid.jpg">
-      <source src="assets/videos/mid.mp4" type="video/mp4">
+  <!-- VIDEO PINOS — hero.mp4 en loop con quote -->
+  <section class="vid-pinos" id="vid-pinos">
+    <video class="vid-pinos__video" autoplay muted loop playsinline poster="assets/images/poster-hero.jpg">
+      <source src="assets/videos/hero.mp4" type="video/mp4">
     </video>
-    <div class="mid-video__overlay"></div>
-    <div class="mid-video__content">
-      <h2 class="mid-video__text">
-        MIENTRAS TU COMPETENCIA DUERME,<br>TUS AUTOMACIONES TRABAJAN
+    <div class="vid-pinos__overlay"></div>
+    <div class="vid-pinos__content">
+      <h2 class="vid-pinos__text">
+        MIENTRAS OTROS PLANEAN,<br>
+        NOSOTROS <span class="accent">BAJAMOS</span>
       </h2>
     </div>
   </section>
@@ -364,67 +343,47 @@
         <p class="section-sub">Diseñamos flujos con IA para que cada rubro tenga su propia operación corriendo sola.</p>
       </div>
       <div class="auto__grid">
-
         <div class="auto-card">
           <p class="auto-card__sector">Gastronomía</p>
-          <div class="auto-card__items">
-            <span>Reservas</span><span>Stock</span><span>Consultas</span>
-          </div>
+          <div class="auto-card__items"><span>Reservas</span><span>Stock</span><span>Consultas</span></div>
         </div>
         <div class="auto-card">
           <p class="auto-card__sector">Salud &amp; Clínicas</p>
-          <div class="auto-card__items">
-            <span>Turnos</span><span>Recordatorios</span><span>CRM</span>
-          </div>
+          <div class="auto-card__items"><span>Turnos</span><span>Recordatorios</span><span>CRM</span></div>
         </div>
         <div class="auto-card">
           <p class="auto-card__sector">Inmobiliarias</p>
-          <div class="auto-card__items">
-            <span>Leads</span><span>Calificación</span><span>Agenda</span>
-          </div>
+          <div class="auto-card__items"><span>Leads</span><span>Calificación</span><span>Agenda</span></div>
         </div>
         <div class="auto-card">
           <p class="auto-card__sector">Retail &amp; Boutiques</p>
-          <div class="auto-card__items">
-            <span>Posts</span><span>Stock</span><span>Catálogo auto</span>
-          </div>
+          <div class="auto-card__items"><span>Posts</span><span>Stock</span><span>Catálogo auto</span></div>
         </div>
         <div class="auto-card">
           <p class="auto-card__sector">Fitness &amp; Gimnasios</p>
-          <div class="auto-card__items">
-            <span>Ventas</span><span>Seguimiento</span><span>Cierre</span>
-          </div>
+          <div class="auto-card__items"><span>Ventas</span><span>Seguimiento</span><span>Cierre</span></div>
         </div>
         <div class="auto-card">
           <p class="auto-card__sector">Hotelería &amp; Hospitalidad</p>
-          <div class="auto-card__items">
-            <span>Reservas</span><span>Huéspedes</span><span>Reseñas</span>
-          </div>
+          <div class="auto-card__items"><span>Reservas</span><span>Huéspedes</span><span>Reseñas</span></div>
         </div>
         <div class="auto-card">
           <p class="auto-card__sector">Servicios Profesionales</p>
-          <div class="auto-card__items">
-            <span>Reportes</span><span>Propuestas</span><span>CRM</span>
-          </div>
+          <div class="auto-card__items"><span>Reportes</span><span>Propuestas</span><span>CRM</span></div>
         </div>
         <div class="auto-card">
           <p class="auto-card__sector">E-commerce</p>
-          <div class="auto-card__items">
-            <span>Órdenes</span><span>Posventa</span><span>Recompra</span>
-          </div>
+          <div class="auto-card__items"><span>Órdenes</span><span>Posventa</span><span>Recompra</span></div>
         </div>
         <div class="auto-card">
           <p class="auto-card__sector">Educación &amp; Cursos</p>
-          <div class="auto-card__items">
-            <span>Inscripciones</span><span>Recordatorios</span><span>Seguimiento</span>
-          </div>
+          <div class="auto-card__items"><span>Inscripciones</span><span>Recordatorios</span><span>Seguimiento</span></div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- PROCESO (con video de fondo) -->
+  <!-- PROCESO — cta.mp4 de fondo -->
   <section class="process" id="proceso">
     <video class="process__bg-video" autoplay muted loop playsinline poster="assets/images/poster-cta.jpg">
       <source src="assets/videos/cta.mp4" type="video/mp4">
@@ -434,7 +393,6 @@
       <span class="label label--light">Cómo trabajamos</span>
       <h2 class="process__title">EL PROCESO</h2>
       <div class="process__steps">
-
         <div class="process__step">
           <span class="process__num">01</span>
           <div class="process__step-body">
@@ -442,7 +400,6 @@
             <p class="process__step-desc">30 minutos para entender tu negocio, tu competencia y dónde están las oportunidades reales.</p>
           </div>
         </div>
-
         <div class="process__step">
           <span class="process__num">02</span>
           <div class="process__step-body">
@@ -450,7 +407,6 @@
             <p class="process__step-desc">Plan digital personalizado con canales, métricas y objetivos claros para tu industria.</p>
           </div>
         </div>
-
         <div class="process__step">
           <span class="process__num">03</span>
           <div class="process__step-body">
@@ -458,7 +414,6 @@
             <p class="process__step-desc">Arrancamos en 72 horas desde la aprobación. Nada de semanas esperando.</p>
           </div>
         </div>
-
         <div class="process__step">
           <span class="process__num">04</span>
           <div class="process__step-body">
@@ -466,7 +421,6 @@
             <p class="process__step-desc">Reportes claros cada semana. Qué funcionó, qué optimizamos, qué viene.</p>
           </div>
         </div>
-
         <div class="process__step">
           <span class="process__num">05</span>
           <div class="process__step-body">
@@ -474,7 +428,6 @@
             <p class="process__step-desc">Escalamos lo que funciona, eliminamos lo que no. Sin parar.</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -553,7 +506,7 @@
     <span>¿Hablamos?</span>
   </a>
 
-  <!-- Scripts -->
+  <!-- Scripts — orden obligatorio -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
