@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ochostudio — Marketing Digital que Mueve</title>
+  <title>ochostudio — Marketing digital con IA</title>
   <meta name="description" content="Agencia de marketing digital. Estrategia, contenido y automatización con IA. De Buenos Aires para el mundo.">
   <meta property="og:title" content="ochostudio — Marketing Digital que Mueve">
   <meta property="og:description" content="Estrategia, contenido y automatización con IA. Resultados medibles desde el día uno.">
@@ -15,42 +15,12 @@
 </head>
 <body>
 
-  <!-- CURSOR (desktop only, hidden via CSS on touch) -->
-  <div id="cursor-dot" aria-hidden="true">
-    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="10" y1="1" x2="10" y2="19" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="1"  y1="10" x2="19" y2="10" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="3.5" y1="3.5"  x2="16.5" y2="16.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="16.5" y1="3.5" x2="3.5"  y2="16.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="7.5" y1="5"    x2="10"   y2="7.5"  stroke="white" stroke-width="1" stroke-linecap="round"/>
-      <line x1="12.5" y1="5"   x2="10"   y2="7.5"  stroke="white" stroke-width="1" stroke-linecap="round"/>
-      <line x1="7.5"  y1="15"  x2="10"   y2="12.5" stroke="white" stroke-width="1" stroke-linecap="round"/>
-      <line x1="12.5" y1="15"  x2="10"   y2="12.5" stroke="white" stroke-width="1" stroke-linecap="round"/>
-    </svg>
-  </div>
-  <canvas id="cursor-canvas" aria-hidden="true"></canvas>
-
-  <!-- WA FLOATING BUTTON -->
-  <a
-    href="https://wa.me/5491122612775?text=Hola%20Aaron%2C%20vi%20la%20web%20de%20ochostudio%20y%20me%20interesa%20saber%20m%C3%A1s"
-    class="wa-float"
-    target="_blank"
-    rel="noopener"
-    aria-label="Escribinos por WhatsApp"
-  >
-    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-      <path d="M12 2C6.477 2 2 6.477 2 12c0 1.773.46 3.441 1.265 4.897L2 22l5.252-1.374A9.947 9.947 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.198a8.197 8.197 0 0 1-4.277-1.199l-.307-.184-3.116.816.83-3.044-.198-.318A8.196 8.196 0 1 1 12 20.198z"/>
-    </svg>
-    <span>¿Hablamos?</span>
-  </a>
-
-  <!-- ── NAV ──────────────────────────────────────────────── -->
+  <!-- NAV -->
   <header class="nav" id="nav">
     <a href="#" class="nav__logo">
       <span class="logo-ocho">ocho</span><span class="logo-s">S</span><span class="logo-tudio">tudio</span>
     </a>
-    <nav class="nav__links" id="navLinks">
+    <nav class="nav__links" aria-label="Menú principal">
       <a href="#servicios">Servicios</a>
       <a href="#automatizaciones">Automatizaciones</a>
       <a href="#proceso">Proceso</a>
@@ -76,16 +46,13 @@
     </div>
   </div>
 
-  <!-- ── HERO ─────────────────────────────────────────────── -->
-  <section id="hero" class="hero">
-    <div class="hero__video-wrap" id="heroVideoWrap">
-      <video autoplay muted loop playsinline poster="assets/images/poster-hero.jpg"
-        style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;">
-        <source src="assets/Videos/hero.mp4" type="video/mp4">
-      </video>
-    </div>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <video class="hero__video" autoplay muted loop playsinline poster="assets/images/poster-hero.jpg">
+      <source src="assets/Videos/hero.mp4" type="video/mp4">
+    </video>
     <div class="hero__overlay"></div>
-    <div class="hero__content container">
+    <div class="hero__content">
       <p class="label label--accent">De Buenos Aires para el mundo</p>
       <h1 class="hero__headline">
         TU NEGOCIO<br>
@@ -103,7 +70,7 @@
           target="_blank"
           rel="noopener"
         >
-          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
             <path d="M12 2C6.477 2 2 6.477 2 12c0 1.773.46 3.441 1.265 4.897L2 22l5.252-1.374A9.947 9.947 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.198a8.197 8.197 0 0 1-4.277-1.199l-.307-.184-3.116.816.83-3.044-.198-.318A8.196 8.196 0 1 1 12 20.198z"/>
           </svg>
@@ -112,15 +79,10 @@
         <a href="#servicios" class="btn-ghost">Ver servicios</a>
       </div>
     </div>
-    <a href="#marquee" class="hero__scroll" aria-label="Bajar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M12 5v14M5 12l7 7 7-7"/>
-      </svg>
-    </a>
   </section>
 
-  <!-- ── MARQUEE ───────────────────────────────────────────── -->
-  <div class="marquee" id="marquee" aria-hidden="true">
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
     <div class="marquee__track">
       <span>Redes Sociales</span><span class="sep">✦</span>
       <span>Google Ads</span><span class="sep">✦</span>
@@ -145,11 +107,11 @@
     </div>
   </div>
 
-  <!-- ── STATEMENT ─────────────────────────────────────────── -->
-  <section id="statement" class="statement">
+  <!-- STATEMENT -->
+  <section class="statement" id="statement">
     <div class="container">
       <div class="statement__inner">
-        <div class="statement__text js-fade">
+        <div class="statement__text">
           <span class="label">El problema</span>
           <h2 class="statement__headline">
             ESTÁS PERDIENDO<br>VENTAS SIN<br>DARTE CUENTA
@@ -162,19 +124,19 @@
           </p>
         </div>
         <div class="stats-grid">
-          <div class="stat-card js-fade">
+          <div class="stat-card">
             <span class="stat-card__num" data-final="IA">IA</span>
             <p class="stat-card__desc">Agentes de inteligencia artificial trabajando para tu negocio</p>
           </div>
-          <div class="stat-card js-fade">
+          <div class="stat-card">
             <span class="stat-card__num" data-final="24/7">24/7</span>
             <p class="stat-card__desc">Disponibles siempre. Tu negocio no tiene horario y nosotros tampoco</p>
           </div>
-          <div class="stat-card js-fade">
+          <div class="stat-card">
             <span class="stat-card__num" data-final="0">0</span>
             <p class="stat-card__desc">Contratos mínimos. Generamos compromiso, no ataduras</p>
           </div>
-          <div class="stat-card js-fade">
+          <div class="stat-card">
             <span class="stat-card__num" data-final="-80%">-80%</span>
             <p class="stat-card__desc">Menos trabajo manual. Más margen. Más tiempo para lo que importa</p>
           </div>
@@ -183,39 +145,38 @@
     </div>
   </section>
 
-  <!-- ── TELESILLA ──────────────────────────────────────────── -->
-  <section id="telesilla-section" class="telesilla">
-    <div class="telesilla__img-wrap" id="telesilla-img-wrap">
-      <img
-        src="assets/images/telesilla.jpg"
-        alt="Vista desde la telesilla — perspectiva de velocidad y altura"
-        loading="lazy"
-      >
-    </div>
+  <!-- TELESILLA -->
+  <section class="telesilla" id="telesilla">
+    <img
+      class="telesilla__img"
+      src="assets/images/telesilla.jpg"
+      alt="Vista desde la telesilla — perspectiva de velocidad y altura"
+      loading="lazy"
+    >
     <div class="telesilla__overlay"></div>
     <div class="telesilla__content">
-      <blockquote class="telesilla__quote js-fade">
+      <h2 class="telesilla__quote">
         MIENTRAS OTROS DUDAN,<br>
         NOSOTROS NOS <span class="accent">LANZAMOS</span>
-      </blockquote>
+      </h2>
     </div>
   </section>
 
-  <!-- ── SERVICIOS ──────────────────────────────────────────── -->
-  <section id="servicios" class="services">
+  <!-- SERVICIOS -->
+  <section class="services" id="servicios">
     <div class="container">
-      <div class="services__header js-fade">
+      <div class="services__header">
         <span class="label">Lo que hacemos</span>
         <h2 class="section-title">NUESTROS<br>SERVICIOS</h2>
         <p class="section-sub">Todo lo que necesita tu negocio para crecer en digital. Sin excusas.</p>
       </div>
-      <div class="services__grid" id="servicesGrid">
+      <div class="services__grid">
 
         <div class="service-card">
           <div class="service-card__top">
             <span class="service-card__num">01</span>
             <div class="service-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
@@ -233,7 +194,7 @@
           <div class="service-card__top">
             <span class="service-card__num">02</span>
             <div class="service-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="10"/>
                 <circle cx="12" cy="12" r="6"/>
                 <circle cx="12" cy="12" r="2"/>
@@ -251,7 +212,7 @@
           <div class="service-card__top">
             <span class="service-card__num">03</span>
             <div class="service-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="11" cy="11" r="8"/>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"/>
                 <line x1="11" y1="8" x2="11" y2="14"/>
@@ -270,7 +231,7 @@
           <div class="service-card__top">
             <span class="service-card__num">04</span>
             <div class="service-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                 <line x1="8" y1="10" x2="8.01" y2="10"/>
                 <line x1="12" y1="10" x2="12.01" y2="10"/>
@@ -289,7 +250,7 @@
           <div class="service-card__top">
             <span class="service-card__num">05</span>
             <div class="service-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="9" y="9" width="6" height="6" rx="1"/>
                 <path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/>
               </svg>
@@ -306,7 +267,7 @@
           <div class="service-card__top">
             <span class="service-card__num">06</span>
             <div class="service-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="16 18 22 12 16 6"/>
                 <polyline points="8 6 2 12 8 18"/>
               </svg>
@@ -323,7 +284,7 @@
           <div class="service-card__top">
             <span class="service-card__num">07</span>
             <div class="service-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
               </svg>
             </div>
@@ -339,7 +300,7 @@
           <div class="service-card__top">
             <span class="service-card__num">08</span>
             <div class="service-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="10"/>
                 <line x1="14.31" y1="8" x2="20.05" y2="17.94"/>
                 <line x1="9.69"  y1="8" x2="21.17" y2="8"/>
@@ -361,7 +322,7 @@
           <div class="service-card__top">
             <span class="service-card__num">09</span>
             <div class="service-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="10"/>
                 <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
                 <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
@@ -379,83 +340,80 @@
     </div>
   </section>
 
-  <!-- ── MID VIDEO ─────────────────────────────────────────── -->
-  <section id="mid-section" class="mid-video">
-    <div class="mid-video__wrap">
-      <video autoplay muted loop playsinline poster="assets/images/poster-mid.jpg"
-        style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
-        <source src="assets/Videos/mid.mp4" type="video/mp4">
-      </video>
-      <div class="mid-video__overlay"></div>
-    </div>
+  <!-- MID VIDEO -->
+  <section class="mid-video" id="mid-video-section">
+    <video class="mid-video__bg" autoplay muted loop playsinline poster="assets/images/poster-mid.jpg">
+      <source src="assets/Videos/mid.mp4" type="video/mp4">
+    </video>
+    <div class="mid-video__overlay"></div>
     <div class="mid-video__content">
-      <p class="mid-video__text" id="mid-text">
-        MIENTRAS TU COMPETENCIA DUERME, TUS AUTOMACIONES TRABAJAN
-      </p>
+      <h2 class="mid-video__text">
+        MIENTRAS TU COMPETENCIA DUERME,<br>TUS AUTOMACIONES TRABAJAN
+      </h2>
     </div>
   </section>
 
-  <!-- ── AUTOMATIZACIONES ──────────────────────────────────── -->
-  <section id="automatizaciones" class="autos">
+  <!-- AUTOMATIZACIONES -->
+  <section class="auto" id="automatizaciones">
     <div class="container">
-      <div class="autos__header js-fade">
+      <div class="auto__header">
         <span class="label">Automatizaciones</span>
         <h2 class="section-title">
           TU INDUSTRIA,<br>EN PILOTO <span class="accent">AUTOMÁTICO</span>
         </h2>
         <p class="section-sub">Diseñamos flujos con IA para que cada rubro tenga su propia operación corriendo sola.</p>
       </div>
-      <div class="autos__grid">
+      <div class="auto__grid">
 
-        <div class="auto-card js-fade">
+        <div class="auto-card">
           <p class="auto-card__sector">Gastronomía</p>
           <div class="auto-card__items">
             <span>Reservas</span><span>Stock</span><span>Consultas</span>
           </div>
         </div>
-        <div class="auto-card js-fade">
+        <div class="auto-card">
           <p class="auto-card__sector">Salud &amp; Clínicas</p>
           <div class="auto-card__items">
             <span>Turnos</span><span>Recordatorios</span><span>CRM</span>
           </div>
         </div>
-        <div class="auto-card js-fade">
+        <div class="auto-card">
           <p class="auto-card__sector">Inmobiliarias</p>
           <div class="auto-card__items">
             <span>Leads</span><span>Calificación</span><span>Agenda</span>
           </div>
         </div>
-        <div class="auto-card js-fade">
+        <div class="auto-card">
           <p class="auto-card__sector">Retail &amp; Boutiques</p>
           <div class="auto-card__items">
             <span>Posts</span><span>Stock</span><span>Catálogo auto</span>
           </div>
         </div>
-        <div class="auto-card js-fade">
+        <div class="auto-card">
           <p class="auto-card__sector">Fitness &amp; Gimnasios</p>
           <div class="auto-card__items">
             <span>Ventas</span><span>Seguimiento</span><span>Cierre</span>
           </div>
         </div>
-        <div class="auto-card js-fade">
+        <div class="auto-card">
           <p class="auto-card__sector">Hotelería &amp; Hospitalidad</p>
           <div class="auto-card__items">
             <span>Reservas</span><span>Huéspedes</span><span>Reseñas</span>
           </div>
         </div>
-        <div class="auto-card js-fade">
+        <div class="auto-card">
           <p class="auto-card__sector">Servicios Profesionales</p>
           <div class="auto-card__items">
             <span>Reportes</span><span>Propuestas</span><span>CRM</span>
           </div>
         </div>
-        <div class="auto-card js-fade">
+        <div class="auto-card">
           <p class="auto-card__sector">E-commerce</p>
           <div class="auto-card__items">
             <span>Órdenes</span><span>Posventa</span><span>Recompra</span>
           </div>
         </div>
-        <div class="auto-card js-fade">
+        <div class="auto-card">
           <p class="auto-card__sector">Educación &amp; Cursos</p>
           <div class="auto-card__items">
             <span>Inscripciones</span><span>Recordatorios</span><span>Seguimiento</span>
@@ -466,57 +424,54 @@
     </div>
   </section>
 
-  <!-- ── PROCESO ───────────────────────────────────────────── -->
-  <section id="proceso" class="proceso">
-    <div class="proceso__bg">
-      <video autoplay muted loop playsinline poster="assets/images/poster-cta.jpg"
-        style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;">
-        <source src="assets/Videos/cta.mp4" type="video/mp4">
-      </video>
-      <div class="proceso__overlay"></div>
-    </div>
-    <div class="proceso__content container">
+  <!-- PROCESO (con video de fondo) -->
+  <section class="process" id="proceso">
+    <video class="process__bg-video" autoplay muted loop playsinline poster="assets/images/poster-cta.jpg">
+      <source src="assets/Videos/cta.mp4" type="video/mp4">
+    </video>
+    <div class="process__overlay"></div>
+    <div class="process__content container">
       <span class="label label--light">Cómo trabajamos</span>
-      <h2 class="proceso__title">EL PROCESO</h2>
-      <div class="proceso__steps">
+      <h2 class="process__title">EL PROCESO</h2>
+      <div class="process__steps">
 
-        <div class="proceso__step js-fade">
-          <span class="proceso__num">01</span>
-          <div class="proceso__step-body">
-            <h3 class="proceso__step-title">Diagnóstico gratuito</h3>
-            <p class="proceso__step-desc">30 minutos para entender tu negocio, tu competencia y dónde están las oportunidades reales.</p>
+        <div class="process__step">
+          <span class="process__num">01</span>
+          <div class="process__step-body">
+            <h3 class="process__step-title">Diagnóstico gratuito</h3>
+            <p class="process__step-desc">30 minutos para entender tu negocio, tu competencia y dónde están las oportunidades reales.</p>
           </div>
         </div>
 
-        <div class="proceso__step js-fade">
-          <span class="proceso__num">02</span>
-          <div class="proceso__step-body">
-            <h3 class="proceso__step-title">Estrategia a medida</h3>
-            <p class="proceso__step-desc">Plan digital personalizado con canales, métricas y objetivos claros para tu industria.</p>
+        <div class="process__step">
+          <span class="process__num">02</span>
+          <div class="process__step-body">
+            <h3 class="process__step-title">Estrategia a medida</h3>
+            <p class="process__step-desc">Plan digital personalizado con canales, métricas y objetivos claros para tu industria.</p>
           </div>
         </div>
 
-        <div class="proceso__step js-fade">
-          <span class="proceso__num">03</span>
-          <div class="proceso__step-body">
-            <h3 class="proceso__step-title">Implementación express</h3>
-            <p class="proceso__step-desc">Arrancamos en 72 horas desde la aprobación. Nada de semanas esperando.</p>
+        <div class="process__step">
+          <span class="process__num">03</span>
+          <div class="process__step-body">
+            <h3 class="process__step-title">Implementación express</h3>
+            <p class="process__step-desc">Arrancamos en 72 horas desde la aprobación. Nada de semanas esperando.</p>
           </div>
         </div>
 
-        <div class="proceso__step js-fade">
-          <span class="proceso__num">04</span>
-          <div class="proceso__step-body">
-            <h3 class="proceso__step-title">Seguimiento semanal</h3>
-            <p class="proceso__step-desc">Reportes claros cada semana. Qué funcionó, qué optimizamos, qué viene.</p>
+        <div class="process__step">
+          <span class="process__num">04</span>
+          <div class="process__step-body">
+            <h3 class="process__step-title">Seguimiento semanal</h3>
+            <p class="process__step-desc">Reportes claros cada semana. Qué funcionó, qué optimizamos, qué viene.</p>
           </div>
         </div>
 
-        <div class="proceso__step js-fade">
-          <span class="proceso__num">05</span>
-          <div class="proceso__step-body">
-            <h3 class="proceso__step-title">Crecimiento continuo</h3>
-            <p class="proceso__step-desc">Escalamos lo que funciona, eliminamos lo que no. Sin parar.</p>
+        <div class="process__step">
+          <span class="process__num">05</span>
+          <div class="process__step-body">
+            <h3 class="process__step-title">Crecimiento continuo</h3>
+            <p class="process__step-desc">Escalamos lo que funciona, eliminamos lo que no. Sin parar.</p>
           </div>
         </div>
 
@@ -524,26 +479,26 @@
     </div>
   </section>
 
-  <!-- ── CTA FINAL ─────────────────────────────────────────── -->
-  <section id="contacto" class="cta-final">
+  <!-- CTA FINAL -->
+  <section class="final" id="contacto">
     <div class="container">
-      <div class="cta-final__inner js-fade">
+      <div class="final__inner">
         <span class="label label--accent">¿Empezamos?</span>
-        <h2 class="cta-final__headline">
+        <h2 class="final__headline">
           ¿LISTO PARA<br><span class="accent">ARRANCAR?</span>
         </h2>
-        <p class="cta-final__sub">
+        <p class="final__sub">
           Un diagnóstico gratuito. Sin compromisos.<br>
           Mostranos tu negocio y te decimos qué haríamos.
         </p>
-        <div class="cta-final__actions">
+        <div class="final__actions">
           <a
             href="https://wa.me/5491122612775?text=Hola%20Aaron%2C%20vi%20la%20web%20de%20ochostudio%20y%20me%20interesa%20saber%20m%C3%A1s"
             class="btn-wa-big"
             target="_blank"
             rel="noopener"
           >
-            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
               <path d="M12 2C6.477 2 2 6.477 2 12c0 1.773.46 3.441 1.265 4.897L2 22l5.252-1.374A9.947 9.947 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.198a8.197 8.197 0 0 1-4.277-1.199l-.307-.184-3.116.816.83-3.044-.198-.318A8.196 8.196 0 1 1 12 20.198z"/>
             </svg>
@@ -557,7 +512,7 @@
     </div>
   </section>
 
-  <!-- ── FOOTER ────────────────────────────────────────────── -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer__inner">
@@ -567,7 +522,7 @@
           </p>
           <p class="footer__tagline">De Buenos Aires para el mundo.</p>
         </div>
-        <nav class="footer__nav">
+        <nav class="footer__nav" aria-label="Pie de página">
           <a href="#servicios">Servicios</a>
           <a href="#automatizaciones">Automatizaciones</a>
           <a href="#proceso">Proceso</a>
@@ -583,7 +538,22 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
+  <!-- WhatsApp flotante -->
+  <a
+    href="https://wa.me/5491122612775?text=Hola%20Aaron%2C%20vi%20la%20web%20de%20ochostudio%20y%20me%20interesa%20saber%20m%C3%A1s"
+    class="wa-float"
+    target="_blank"
+    rel="noopener"
+    aria-label="Escribinos por WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 1.773.46 3.441 1.265 4.897L2 22l5.252-1.374A9.947 9.947 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.198a8.197 8.197 0 0 1-4.277-1.199l-.307-.184-3.116.816.83-3.044-.198-.318A8.196 8.196 0 1 1 12 20.198z"/>
+    </svg>
+    <span>¿Hablamos?</span>
+  </a>
+
+  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
