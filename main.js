@@ -1,288 +1,231 @@
 /* ============================================================
    OCHOSTUDIO — main.js
-   Lenis smooth scroll + GSAP ScrollTrigger + custom cursor
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-const IS_MOBILE = window.matchMedia('(max-width: 768px)').matches;
-const IS_TOUCH  = window.matchMedia('(hover: none), (pointer: coarse)').matches;
-
-/* ── GSAP + LENIS SETUP ──────────────────────────────────── */
-gsap.registerPlugin(ScrollTrigger);
-
-const lenis = new Lenis({
-  lerp: 0.1,
-  smoothWheel: true,
-});
-
-lenis.on('scroll', ScrollTrigger.update);
-
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000);
-});
-gsap.ticker.lagSmoothing(0);
-
-/* ── NAV ─────────────────────────────────────────────────── */
-const nav        = document.getElementById('nav');
-const navBurger  = document.getElementById('navBurger');
-const mobileMenu = document.getElementById('mobileMenu');
-const navLinks   = document.querySelectorAll('.mobile-menu__nav a, .nav__links a');
-
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('is-scrolled', window.scrollY > 40);
-}, { passive: true });
-
-navBurger.addEventListener('click', () => {
-  const isOpen = mobileMenu.classList.toggle('is-open');
-  navBurger.classList.toggle('is-open', isOpen);
-  navBurger.setAttribute('aria-expanded', String(isOpen));
-  mobileMenu.setAttribute('aria-hidden', String(!isOpen));
-  document.body.classList.toggle('menu-open', isOpen);
-});
-
-navLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.remove('is-open');
-    navBurger.classList.remove('is-open');
-    navBurger.setAttribute('aria-expanded', 'false');
-    mobileMenu.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('menu-open');
-  });
-});
-
-/* ── CUSTOM CURSOR (desktop only) ────────────────────────── */
-if (!IS_TOUCH) {
-  const cursorDot    = document.getElementById('cursor-dot');
-  const cursorCanvas = document.getElementById('cursor-canvas');
-  const ctx          = cursorCanvas.getContext('2d');
-
-  let mouseX = -200, mouseY = -200;
-  let prevX  = -200, prevY  = -200;
-  let rotation = 0;
-  let particles = [];
-
-  function resizeCanvas() {
-    cursorCanvas.width  = window.innerWidth;
-    cursorCanvas.height = window.innerHeight;
-  }
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas, { passive: true });
-
-  class Snowdot {
-    constructor(x, y) {
-      this.x = x + (Math.random() - 0.5) * 12;
-      this.y = y + (Math.random() - 0.5) * 12;
-      this.r = Math.random() * 2.5 + 1;
-      this.alpha = 0.65;
-      this.decay = 0.025 + Math.random() * 0.02;
-      this.vx    = (Math.random() - 0.5) * 1.4;
-      this.vy    = (Math.random() - 0.5) * 1.4 - 0.6;
-    }
-    tick() {
-      this.x    += this.vx;
-      this.y    += this.vy;
-      this.alpha -= this.decay;
-    }
-    draw() {
-      ctx.globalAlpha = Math.max(0, this.alpha);
-      ctx.fillStyle   = '#5BB8F5';
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    get dead() { return this.alpha <= 0; }
-  }
-
-  document.addEventListener('mousemove', (e) => {
-    prevX  = mouseX;
-    prevY  = mouseY;
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-
-    const dx    = mouseX - prevX;
-    const dy    = mouseY - prevY;
-    const speed = Math.sqrt(dx * dx + dy * dy);
-
-    if (speed > 2) {
-      rotation = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
-    }
-
-    cursorDot.style.transform =
-      `translate(${mouseX - 10}px, ${mouseY - 10}px) rotate(${rotation}deg)`;
-
-    if (speed > 6) {
-      const count = Math.min(Math.floor(speed / 6), 4);
-      for (let i = 0; i < count; i++) {
-        particles.push(new Snowdot(mouseX, mouseY));
-      }
-    }
+  /* ── 1. LENIS SMOOTH SCROLL ──────────────────────────────── */
+  const lenis = new Lenis({
+    duration: 1.4,
+    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
   });
 
-  document.addEventListener('mouseleave', () => {
-    cursorDot.style.transform = 'translate(-200px, -200px)';
+  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+
+  /* ── 2. GSAP + SCROLLTRIGGER ─────────────────────────────── */
+  gsap.registerPlugin(ScrollTrigger);
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(time => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  /* ── NAV ─────────────────────────────────────────────────── */
+  const nav        = document.getElementById('nav');
+  const navBurger  = document.getElementById('navBurger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('is-scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  navBurger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('is-open');
+    navBurger.classList.toggle('is-open', open);
+    navBurger.setAttribute('aria-expanded', String(open));
+    mobileMenu.setAttribute('aria-hidden', String(!open));
+    document.body.classList.toggle('menu-open', open);
   });
 
-  function rafParticles() {
-    ctx.clearRect(0, 0, cursorCanvas.width, cursorCanvas.height);
-    particles = particles.filter(p => !p.dead);
-    particles.forEach(p => { p.tick(); p.draw(); });
-    ctx.globalAlpha = 1;
-    requestAnimationFrame(rafParticles);
-  }
-  rafParticles();
-}
+  document.querySelectorAll('.mobile-menu__nav a, .nav__links a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('is-open');
+      navBurger.classList.remove('is-open');
+      navBurger.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('menu-open');
+    });
+  });
 
-/* ── HERO VIDEO PARALLAX ZOOM ────────────────────────────── */
-if (!IS_MOBILE) {
-  gsap.to('#hero-video', {
-    scrollTrigger: {
-      trigger: '#hero',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 1.5,
-    },
+  /* ── 3. HERO VIDEO ZOOM ──────────────────────────────────── */
+  gsap.to('#heroVideoWrap video', {
     scale: 1.15,
     ease: 'none',
-  });
-}
-
-/* ── TELESILLA PIN + ZOOM ────────────────────────────────── */
-if (!IS_MOBILE) {
-  const telesilla  = document.getElementById('telesilla-section');
-  const telesillImg = telesilla.querySelector('img');
-
-  ScrollTrigger.create({
-    trigger: telesilla,
-    start: 'top top',
-    end: '+=400',
-    pin: true,
-    scrub: true,
-    onUpdate(self) {
-      gsap.set(telesillImg, { scale: 1 + self.progress * 0.1 });
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true,
     },
   });
-}
 
-/* ── MID VIDEO PIN + TYPEWRITER ──────────────────────────── */
-const midTextEl = document.getElementById('mid-text');
-const RAW_TEXT  = 'MIENTRAS TU COMPETENCIA DUERME, TUS AUTOMACIONES TRABAJAN';
+  /* ── 4. FADE IN GENERAL (.js-fade) ──────────────────────── */
+  gsap.utils.toArray('.js-fade').forEach(el => {
+    gsap.from(el, {
+      opacity: 0,
+      y: 40,
+      duration: 0.8,
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+    });
+  });
 
-midTextEl.innerHTML = RAW_TEXT.split('').map((ch, i) =>
-  `<span class="char" style="--i:${i}">${ch === ' ' ? '&nbsp;' : ch}</span>`
-).join('');
+  /* ── 5. CARDS SERVICIOS 3D ───────────────────────────────── */
+  gsap.utils.toArray('.service-card').forEach((card, i) => {
+    gsap.from(card, {
+      opacity: 0,
+      rotateX: 15,
+      y: 50,
+      duration: 0.7,
+      delay: i * 0.08,
+      transformPerspective: 900,
+      transformOrigin: 'top center',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 88%',
+        toggleActions: 'play none none none',
+      },
+    });
+  });
 
-const chars = midTextEl.querySelectorAll('.char');
+  /* ── 6. STATS SCRAMBLE ───────────────────────────────────── */
+  const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@$%&';
 
-if (!IS_MOBILE) {
-  ScrollTrigger.create({
-    trigger: '#mid-section',      // section id (video element id is #mid-video)
-    start: 'top top',
-    end: '+=500',
-    pin: true,
-    scrub: 1,
-    onUpdate(self) {
-      chars.forEach((ch, i) => {
-        ch.style.opacity = self.progress > i / chars.length ? '1' : '0.1';
+  function scrambleTo(el, final, ms = 900) {
+    const steps = Math.floor(ms / 50);
+    let n = 0;
+    const iv = setInterval(() => {
+      el.textContent = final.split('').map((ch, i) =>
+        i < (n / steps) * final.length
+          ? ch
+          : CHARS[Math.floor(Math.random() * CHARS.length)]
+      ).join('');
+      if (++n > steps) { el.textContent = final; clearInterval(iv); }
+    }, 50);
+  }
+
+  document.querySelectorAll('.stat-card__num').forEach(el => {
+    const final = el.dataset.final || el.textContent.trim();
+    el.textContent = final;
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 90%',
+      once: true,
+      onEnter: () => scrambleTo(el, final, 800),
+    });
+  });
+
+  /* ── 7. PIN TELESILLA + ZOOM ─────────────────────────────── */
+  if (window.innerWidth > 768) {
+    ScrollTrigger.create({
+      trigger: '.telesilla',
+      start: 'top top',
+      end: '+=400',
+      pin: true,
+      scrub: 1,
+      onUpdate: self => {
+        const el = document.querySelector('.telesilla img, .telesilla__img-wrap img');
+        if (el) gsap.set(el, { scale: 1 + self.progress * 0.12 });
+      },
+    });
+  }
+
+  /* ── 8. MID VIDEO PIN + CHAR REVEAL ─────────────────────── */
+  const midTextEl = document.getElementById('mid-text');
+  if (midTextEl) {
+    const RAW = 'MIENTRAS TU COMPETENCIA DUERME, TUS AUTOMACIONES TRABAJAN';
+    midTextEl.innerHTML = RAW.split('').map(ch =>
+      `<span class="char">${ch === ' ' ? '&nbsp;' : ch}</span>`
+    ).join('');
+    const chars = midTextEl.querySelectorAll('.char');
+
+    if (window.innerWidth > 768) {
+      ScrollTrigger.create({
+        trigger: '#mid-section',
+        start: 'top top',
+        end: '+=500',
+        pin: true,
+        scrub: 1,
+        onUpdate: self => {
+          chars.forEach((ch, i) => {
+            ch.style.opacity = self.progress > i / chars.length ? '1' : '0.1';
+          });
+        },
       });
-    },
-  });
-} else {
-  ScrollTrigger.create({
-    trigger: '#mid-section',
-    start: 'top 75%',
-    once: true,
-    onEnter() {
-      chars.forEach(ch => { ch.style.opacity = '1'; });
-    },
-  });
-}
+    } else {
+      ScrollTrigger.create({
+        trigger: '#mid-section',
+        start: 'top 75%',
+        once: true,
+        onEnter: () => chars.forEach(ch => { ch.style.opacity = '1'; }),
+      });
+    }
+  }
 
-/* ── SERVICE CARDS 3D ENTRANCE ───────────────────────────── */
-gsap.from('.service-card', {
-  scrollTrigger: {
-    trigger: '#servicesGrid',
-    start: 'top 85%',
-  },
-  rotateX: 18,
-  y: 48,
-  opacity: 0,
-  duration: 0.75,
-  stagger: { each: 0.07, from: 'start' },
-  ease: 'power3.out',
-  transformPerspective: 900,
-  transformOrigin: 'top center',
+  /* ── 9. AUTO CARDS ENTRADA ───────────────────────────────── */
+  gsap.from('.auto-card', {
+    opacity: 0, y: 36, duration: 0.6, stagger: 0.06, ease: 'power2.out',
+    scrollTrigger: { trigger: '.autos__grid', start: 'top 85%' },
+  });
+
+  /* ── 10. PROCESO STEPS ENTRADA ───────────────────────────── */
+  gsap.from('.proceso__step', {
+    opacity: 0, x: -24, duration: 0.6, stagger: 0.1, ease: 'power2.out',
+    scrollTrigger: { trigger: '.proceso__steps', start: 'top 85%' },
+  });
+
+  /* ── 11. MARQUEE PAUSA AL HOVER ──────────────────────────── */
+  const track = document.querySelector('.marquee__track');
+  if (track) {
+    track.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
+    track.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
+  }
+
+  /* ── 12. CURSOR PERSONALIZADO (solo desktop) ─────────────── */
+  const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  if (!isTouch) {
+    const dot    = document.getElementById('cursor-dot');
+    const canvas = document.getElementById('cursor-canvas');
+    const ctx    = canvas.getContext('2d');
+    let mx = -200, my = -200, px = -200, py = -200, rot = 0, pts = [];
+
+    const resize = () => { canvas.width = innerWidth; canvas.height = innerHeight; };
+    resize(); window.addEventListener('resize', resize, { passive: true });
+
+    class Dot {
+      constructor(x, y) {
+        this.x = x + (Math.random() - .5) * 12; this.y = y + (Math.random() - .5) * 12;
+        this.r = Math.random() * 2.5 + 1; this.a = 0.65;
+        this.vx = (Math.random() - .5) * 1.4; this.vy = (Math.random() - .5) * 1.4 - .6;
+      }
+      tick() { this.x += this.vx; this.y += this.vy; this.a -= 0.025; }
+      draw() { ctx.globalAlpha = Math.max(0, this.a); ctx.fillStyle = '#5BB8F5'; ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI*2); ctx.fill(); }
+      get dead() { return this.a <= 0; }
+    }
+
+    document.addEventListener('mousemove', e => {
+      px = mx; py = my; mx = e.clientX; my = e.clientY;
+      const dx = mx - px, dy = my - py, spd = Math.sqrt(dx*dx + dy*dy);
+      if (spd > 2) rot = Math.atan2(dy, dx) * 180 / Math.PI + 90;
+      dot.style.transform = `translate(${mx-10}px,${my-10}px) rotate(${rot}deg)`;
+      if (spd > 6) for (let i = 0; i < Math.min(Math.floor(spd/6), 4); i++) pts.push(new Dot(mx, my));
+    });
+    document.addEventListener('mouseleave', () => { dot.style.transform = 'translate(-200px,-200px)'; });
+
+    (function frame() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pts = pts.filter(p => !p.dead);
+      pts.forEach(p => { p.tick(); p.draw(); });
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(frame);
+    })();
+  }
+
+  /* ── 13. DESACTIVAR PINS EN MOBILE ───────────────────────── */
+  if (window.innerWidth <= 768) {
+    ScrollTrigger.getAll().forEach(st => { if (st.pin) st.kill(); });
+  }
+
 });
-
-/* ── STAT CARDS SCRAMBLE ─────────────────────────────────── */
-const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@$%&';
-
-function scrambleTo(el, finalText, duration = 900) {
-  const steps = Math.floor(duration / 50);
-  let iteration = 0;
-  const interval = setInterval(() => {
-    el.textContent = finalText
-      .split('')
-      .map((ch, i) => {
-        if (i < (iteration / steps) * finalText.length) return ch;
-        return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
-      })
-      .join('');
-    if (iteration >= steps) { el.textContent = finalText; clearInterval(interval); }
-    iteration++;
-  }, 50);
-}
-
-document.querySelectorAll('.stat-card__num').forEach(el => {
-  const finalVal = el.dataset.final;
-  el.textContent = finalVal;
-  ScrollTrigger.create({
-    trigger: el,
-    start: 'top 90%',
-    once: true,
-    onEnter() { scrambleTo(el, finalVal, 800); },
-  });
-});
-
-/* ── AUTO CARDS ENTRANCE ─────────────────────────────────── */
-gsap.from('.auto-card', {
-  scrollTrigger: { trigger: '.autos__grid', start: 'top 85%' },
-  y: 36,
-  opacity: 0,
-  duration: 0.6,
-  stagger: 0.06,
-  ease: 'power2.out',
-});
-
-/* ── PROCESO STEPS ENTRANCE ──────────────────────────────── */
-gsap.from('.proceso__step', {
-  scrollTrigger: { trigger: '.proceso__steps', start: 'top 85%' },
-  x: -24,
-  opacity: 0,
-  duration: 0.6,
-  stagger: 0.1,
-  ease: 'power2.out',
-});
-
-/* ── GENERIC FADE-IN (.js-fade) ──────────────────────────── */
-document.querySelectorAll('.js-fade').forEach(el => {
-  ScrollTrigger.create({
-    trigger: el,
-    start: 'top 88%',
-    once: true,
-    onEnter() { el.classList.add('is-visible'); },
-  });
-});
-
-/* ── MARQUEE PAUSE ON HOVER ──────────────────────────────── */
-const marqueeTrack = document.querySelector('.marquee__track');
-if (marqueeTrack) {
-  marqueeTrack.addEventListener('mouseenter', () => {
-    marqueeTrack.style.animationPlayState = 'paused';
-  });
-  marqueeTrack.addEventListener('mouseleave', () => {
-    marqueeTrack.style.animationPlayState = 'running';
-  });
-}
-
-}); // end DOMContentLoaded
