@@ -1,0 +1,16 @@
+# Vercel ignore — videos ARE included (served directly from Vercel)
+# Do NOT add assets/videos/ here
+
+# Editor temp files
+*.txt
+*.bak
+
+# Claude Code
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
