@@ -1,6 +1,6 @@
 /* ============================================================
-   OCHOSTUDIO — main.js  (canvas-hero edition)
-   Animaciones: canvas scroll-driven · fade secciones · cards stagger
+   OCHOSTUDIO — main.js  (image-only edition)
+   3 tipos de animación: hero pin+scale · parallax quotes · fade-up secciones
    ============================================================ */
 
 window.addEventListener('load', () => {
@@ -27,13 +27,13 @@ window.addEventListener('load', () => {
   }, { passive: true });
 
   /* ── BURGER ──────────────────────────────────────────────── */
-  const navBurger  = document.getElementById('navBurger');
+  const burger     = document.getElementById('navBurger');
   const mobileMenu = document.getElementById('mobileMenu');
 
-  navBurger.addEventListener('click', () => {
+  burger.addEventListener('click', () => {
     const open = mobileMenu.classList.toggle('is-open');
-    navBurger.classList.toggle('is-open', open);
-    navBurger.setAttribute('aria-expanded', String(open));
+    burger.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', String(open));
     mobileMenu.setAttribute('aria-hidden', String(!open));
     document.body.classList.toggle('menu-open', open);
   });
@@ -41,141 +41,148 @@ window.addEventListener('load', () => {
   document.querySelectorAll('.mobile-menu__nav a, .nav__links a').forEach(a => {
     a.addEventListener('click', () => {
       mobileMenu.classList.remove('is-open');
-      navBurger.classList.remove('is-open');
-      navBurger.setAttribute('aria-expanded', 'false');
+      burger.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
       mobileMenu.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('menu-open');
     });
   });
 
-  /* ── CANVAS SCROLL-DRIVEN HERO ───────────────────────────── */
   const isMobile = window.innerWidth < 768;
-  const canvas   = document.getElementById('hero-canvas');
 
-  if (!isMobile && canvas) {
-    const ctx        = canvas.getContext('2d');
-    const frameCount = 57;
-    const images     = [];
-    const imageSeq   = { frame: 0 };
+  /* ── 1. HERO — pin 300vh + scale + fade/blur texto ───────── */
+  if (!isMobile) {
+    // Timeline driven por scroll scrub
+    const heroTl = gsap.timeline();
 
-    // Resize canvas to always fill viewport
-    function resizeCanvas() {
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
-      render();
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas, { passive: true });
+    heroTl
+      // Imagen escala de 1 → 1.3 durante todo el pin
+      .to('.hero__img', {
+        scale: 1.3,
+        ease: 'none',
+        duration: 1,
+      }, 0)
+      // Texto se desvanece y sube en los primeros 55% del scroll
+      .to('.hero__content', {
+        opacity: 0,
+        y: -60,
+        filter: 'blur(6px)',
+        ease: 'power2.in',
+        duration: 0.55,
+      }, 0)
+      // Hint arrow desaparece rápido
+      .to('.hero__scroll-hint', {
+        opacity: 0,
+        duration: 0.15,
+      }, 0);
 
-    // Cover-fit draw
-    function render() {
-      const img = images[imageSeq.frame];
-      if (!img || !img.complete || img.naturalWidth === 0) return;
-      const scale = Math.max(canvas.width / img.naturalWidth, canvas.height / img.naturalHeight);
-      const x = (canvas.width  - img.naturalWidth  * scale) / 2;
-      const y = (canvas.height - img.naturalHeight * scale) / 2;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, x, y, img.naturalWidth * scale, img.naturalHeight * scale);
-    }
-
-    // Preload all 57 frames
-    let loadedCount = 0;
-
-    for (let i = 1; i <= frameCount; i++) {
-      const img = new Image();
-      const idx = i - 1; // 0-indexed
-      img.src = `assets/frames/frame_${String(i).padStart(3, '0')}.jpg`;
-      img.onload = () => {
-        loadedCount++;
-        if (idx === 0) render(); // draw first frame immediately
-      };
-      images.push(img);
-    }
-
-    // GSAP drives frame index via scroll
-    gsap.to(imageSeq, {
-      frame: frameCount - 1,   // 0 → 56
-      snap: 'frame',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.hero',
-        start: 'top top',
-        end: '+=200%',
-        scrub: 0.5,
-        pin: true,
-        anticipatePin: 1,
-        onUpdate: render,       // also in onUpdate for snap accuracy
-      },
-      onUpdate: render,
-    });
-
-    // Hero text fades out early in the scroll
-    gsap.to('.hero__content', {
-      opacity: 0,
-      y: -50,
-      ease: 'power2.in',
-      scrollTrigger: {
-        trigger: '.hero',
-        start: 'top top',
-        end: '+=60%',
-        scrub: 1,
-      },
-    });
-
-    gsap.to('.hero__scroll-hint', {
-      opacity: 0,
-      scrollTrigger: {
-        trigger: '.hero',
-        start: 'top top',
-        end: '+=15%',
-        scrub: 1,
-      },
+    ScrollTrigger.create({
+      trigger: '.hero',
+      start: 'top top',
+      end: '+=200%',         // 300vh total (100vh visual + 200vh de scroll)
+      pin: true,
+      scrub: 1,
+      anticipatePin: 1,
+      animation: heroTl,
     });
   }
 
-  /* ── FADE IN secciones (todas salvo hero) ────────────────── */
-  gsap.utils.toArray('section:not(.hero), .marquee').forEach(el => {
-    gsap.from(el, {
+  /* ── 2. PARALLAX — quote1, marketing, process, final ─────── */
+  if (!isMobile) {
+    const parallaxTargets = [
+      { bg: '.quote1__bg',    trigger: '.quote1'    },
+      { bg: '.marketing__bg', trigger: '.marketing' },
+      { bg: '.process__bg',   trigger: '.process'   },
+      { bg: '.final__bg',     trigger: '.final'     },
+    ];
+
+    parallaxTargets.forEach(({ bg, trigger }) => {
+      const el = document.querySelector(bg);
+      if (!el) return;
+
+      gsap.fromTo(el,
+        { yPercent: -10 },
+        {
+          yPercent: 10,
+          ease: 'none',
+          scrollTrigger: {
+            trigger,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        }
+      );
+    });
+
+    // Fade del texto de quote al entrar
+    gsap.from('.quote1__text', {
       opacity: 0,
-      y: 48,
+      y: 32,
       duration: 0.9,
       ease: 'power2.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 88%',
-        toggleActions: 'play none none none',
-      },
+      scrollTrigger: { trigger: '.quote1', start: 'top 65%', toggleActions: 'play none none none' },
     });
+
+    gsap.from('.marketing__headline, .marketing__sub', {
+      opacity: 0,
+      y: 32,
+      duration: 0.9,
+      ease: 'power2.out',
+      stagger: 0.12,
+      scrollTrigger: { trigger: '.marketing', start: 'top 65%', toggleActions: 'play none none none' },
+    });
+  }
+
+  /* ── 3. FADE-UP — todas las secciones al 85% viewport ────── */
+  // Statement
+  gsap.from('.statement__text', {
+    opacity: 0, y: 40, duration: 0.9, ease: 'power2.out',
+    scrollTrigger: { trigger: '.statement', start: 'top 85%', toggleActions: 'play none none none' },
   });
 
-  /* ── SERVICE CARDS stagger ───────────────────────────────── */
+  gsap.from('.stat-card', {
+    opacity: 0, y: 30, duration: 0.6, stagger: 0.1, ease: 'power2.out',
+    scrollTrigger: { trigger: '.stats-grid', start: 'top 85%', toggleActions: 'play none none none' },
+  });
+
+  // Services header + cards stagger
+  gsap.from('.services__header', {
+    opacity: 0, y: 32, duration: 0.8, ease: 'power2.out',
+    scrollTrigger: { trigger: '.services', start: 'top 85%', toggleActions: 'play none none none' },
+  });
+
   gsap.from('.service-card', {
-    opacity: 0,
-    y: 30,
-    duration: 0.6,
-    stagger: 0.07,
-    ease: 'power2.out',
-    scrollTrigger: { trigger: '.services__grid', start: 'top 80%' },
+    opacity: 0, y: 36, duration: 0.6, stagger: 0.07, ease: 'power2.out',
+    scrollTrigger: { trigger: '.services__grid', start: 'top 85%', toggleActions: 'play none none none' },
   });
 
-  /* ── AUTO CARDS stagger ──────────────────────────────────── */
+  // Auto header + cards
+  gsap.from('.auto__header', {
+    opacity: 0, y: 32, duration: 0.8, ease: 'power2.out',
+    scrollTrigger: { trigger: '.auto', start: 'top 85%', toggleActions: 'play none none none' },
+  });
+
   gsap.from('.auto-card', {
-    opacity: 0,
-    y: 24,
-    duration: 0.5,
-    stagger: 0.06,
-    ease: 'power2.out',
-    scrollTrigger: { trigger: '.auto__grid', start: 'top 82%' },
+    opacity: 0, y: 20, duration: 0.5, stagger: 0.05, ease: 'power2.out',
+    scrollTrigger: { trigger: '.auto__grid', start: 'top 85%', toggleActions: 'play none none none' },
   });
 
-  /* ── PROCESS STEPS stagger ───────────────────────────────── */
+  // Process steps
+  gsap.from('.process__title', {
+    opacity: 0, y: 32, duration: 0.8, ease: 'power2.out',
+    scrollTrigger: { trigger: '.process__content', start: 'top 85%', toggleActions: 'play none none none' },
+  });
+
   gsap.from('.process__step', {
-    opacity: 0,
-    x: -24,
-    duration: 0.6,
-    stagger: 0.1,
-    ease: 'power2.out',
-    scrollTrigger: { trigger: '.process__steps', start: 'top 82%' },
+    opacity: 0, y: 24, duration: 0.6, stagger: 0.1, ease: 'power2.out',
+    scrollTrigger: { trigger: '.process__grid', start: 'top 85%', toggleActions: 'play none none none' },
+  });
+
+  // Final CTA
+  gsap.from('.final__headline, .final__sub, .final__actions', {
+    opacity: 0, y: 36, duration: 0.9, stagger: 0.12, ease: 'power2.out',
+    scrollTrigger: { trigger: '.final__content', start: 'top 80%', toggleActions: 'play none none none' },
   });
 
 });
