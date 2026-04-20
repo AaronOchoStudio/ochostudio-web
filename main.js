@@ -1,24 +1,12 @@
 /* ============================================================
-   OCHOSTUDIO — main.js  (image-only edition)
-   3 tipos de animación: hero pin+scale · parallax quotes · fade-up secciones
+   OCHOSTUDIO — main.js  (image-only edition, no Lenis)
+   3 tipos de animación: hero scale · parallax quotes · fade-up secciones
    ============================================================ */
 
 window.addEventListener('load', () => {
 
-  /* ── LENIS ───────────────────────────────────────────────── */
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: t => 1 - Math.pow(1 - t, 3),
-  });
-
-  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
-
   /* ── GSAP + SCROLLTRIGGER ────────────────────────────────── */
   gsap.registerPlugin(ScrollTrigger);
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add(time => lenis.raf(time * 1000));
-  gsap.ticker.lagSmoothing(0);
 
   /* ── NAV ─────────────────────────────────────────────────── */
   const nav = document.getElementById('nav');
@@ -50,40 +38,40 @@ window.addEventListener('load', () => {
 
   const isMobile = window.innerWidth < 768;
 
-  /* ── 1. HERO — pin 300vh + scale + fade/blur texto ───────── */
+  /* ── 1. HERO — scale + fade texto (sin pin) ──────────────── */
   if (!isMobile) {
-    // Timeline driven por scroll scrub
-    const heroTl = gsap.timeline();
+    gsap.to('.hero__img', {
+      scale: 1.2,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 0.5,
+      },
+    });
 
-    heroTl
-      // Imagen escala de 1 → 1.3 durante todo el pin
-      .to('.hero__img', {
-        scale: 1.3,
-        ease: 'none',
-        duration: 1,
-      }, 0)
-      // Texto se desvanece y sube en los primeros 55% del scroll
-      .to('.hero__content', {
-        opacity: 0,
-        y: -60,
-        filter: 'blur(6px)',
-        ease: 'power2.in',
-        duration: 0.55,
-      }, 0)
-      // Hint arrow desaparece rápido
-      .to('.hero__scroll-hint', {
-        opacity: 0,
-        duration: 0.15,
-      }, 0);
+    gsap.to('.hero__content', {
+      opacity: 0,
+      y: -60,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: '60% top',
+        scrub: 0.5,
+      },
+    });
 
-    ScrollTrigger.create({
-      trigger: '.hero',
-      start: 'top top',
-      end: '+=200%',         // 300vh total (100vh visual + 200vh de scroll)
-      pin: true,
-      scrub: 1,
-      anticipatePin: 1,
-      animation: heroTl,
+    gsap.to('.hero__scroll-hint', {
+      opacity: 0,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: '20% top',
+        scrub: 0.5,
+      },
     });
   }
 
@@ -109,7 +97,7 @@ window.addEventListener('load', () => {
             trigger,
             start: 'top bottom',
             end: 'bottom top',
-            scrub: true,
+            scrub: 0.5,
           },
         }
       );
